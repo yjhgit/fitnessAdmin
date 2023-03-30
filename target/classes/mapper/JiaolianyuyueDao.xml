@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.JiaolianyuyueDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.entity.JiaolianyuyueEntity" id="jiaolianyuyueMap">
+        <result property="gonghao" column="gonghao"/>
+        <result property="jiaolianxingming" column="jiaolianxingming"/>
+        <result property="changdimingcheng" column="changdimingcheng"/>
+        <result property="yuyueshuoming" column="yuyueshuoming"/>
+        <result property="yuyueshijian" column="yuyueshijian"/>
+        <result property="yonghuming" column="yonghuming"/>
+        <result property="xingming" column="xingming"/>
+        <result property="shouji" column="shouji"/>
+        <result property="timeFrame" column="time_frame"/>
+    </resultMap>
+
+	<select id="selectListVO"
+		resultType="com.entity.vo.JiaolianyuyueVO" >
+		SELECT * FROM jiaolianyuyue  jiaolianyuyue
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+	<select id="selectVO"
+		resultType="com.entity.vo.JiaolianyuyueVO" >
+		SELECT  jiaolianyuyue.* FROM jiaolianyuyue  jiaolianyuyue
+ 		<where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+    <select id="selectListView"
+		resultType="com.entity.view.JiaolianyuyueView" >
+
+		SELECT  jiaolianyuyue.* FROM jiaolianyuyue  jiaolianyuyue
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+	<select id="selectView"
+		resultType="com.entity.view.JiaolianyuyueView" >
+		SELECT * FROM jiaolianyuyue  jiaolianyuyue <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+
+    <select id="selectValue" resultType="map" >
+        SELECT ${params.xColumn}, sum(${params.yColumn}) total FROM jiaolianyuyue
+        <where> 1=1 ${ew.sqlSegment}</where>
+        group by ${params.xColumn}
+        limit 10
+    </select>
+
+    <select id="selectTimeStatValue" resultType="map" >
+        <if test = 'params.timeStatType == "日"'>
+                SELECT DATE_FORMAT(${params.xColumn},'%Y-%m-%d') ${params.xColumn}, sum(${params.yColumn}) total FROM jiaolianyuyue
+                <where> 1=1 ${ew.sqlSegment}</where>
+                group by DATE_FORMAT(${params.xColumn},'%Y-%m-%d')
+        </if>
+        <if test = 'params.timeStatType == "月"'>
+                SELECT DATE_FORMAT(${params.xColumn},'%Y-%m') ${params.xColumn}, sum(${params.yColumn}) total FROM jiaolianyuyue
+                <where> 1=1 ${ew.sqlSegment}</where>
+                group by DATE_FORMAT(${params.xColumn},'%Y-%m')
+        </if>
+        <if test = 'params.timeStatType == "年"'>
+                SELECT DATE_FORMAT(${params.xColumn},'%Y') ${params.xColumn}, sum(${params.yColumn}) total FROM jiaolianyuyue
+                <where> 1=1 ${ew.sqlSegment}</where>
+                group by DATE_FORMAT(${params.xColumn},'%Y')
+        </if>
+    </select>
+
+    <select id="selectGroup" resultType="map" >
+        SELECT ${params.column} , count(1) total FROM jiaolianyuyue
+        <where> 1=1 ${ew.sqlSegment}</where>
+        group by ${params.column}
+        limit 10
+    </select>
+    <select id="queryCoachSchedule" resultMap="jiaolianyuyueMap" >
+        SELECT  jiaolianyuyue.* FROM jiaolianyuyue where 1 = 1
+        <if test="jiaolianyuyue.gonghao != null and jiaolianyuyue.gonghao != ''">
+            and gonghao = #{jiaolianyuyue.gonghao}
+        </if>
+        <if test="jiaolianyuyue.yuyueshijian != null">
+            and yuyueshijian = #{jiaolianyuyue.yuyueshijian}
+        </if>
+        <if test="jiaolianyuyue.timeFrame != null and jiaolianyuyue.timeFrame != ''">
+            and time_frame = #{jiaolianyuyue.timeFrame}
+        </if>
+    </select>
+
+
+</mapper>
