@@ -39,6 +39,7 @@ import jianshenkechengAdd from '../pages/jianshenkecheng/add'
 import xuankexinxiList from '../pages/xuankexinxi/list'
 import xuankexinxiDetail from '../pages/xuankexinxi/detail'
 import xuankexinxiAdd from '../pages/xuankexinxi/add'
+import xuankexinxiListShow from '../pages/xuankexinxi/listshow'
 import dakaxinxiList from '../pages/dakaxinxi/list'
 import dakaxinxiDetail from '../pages/dakaxinxi/detail'
 import dakaxinxiAdd from '../pages/dakaxinxi/add'
@@ -214,6 +215,10 @@ export default new VueRouter({
 				{
 					path: 'xuankexinxiAdd',
 					component: xuankexinxiAdd
+				},
+				{
+					path: 'xuankexinxiListShow',
+					component: xuankexinxiListShow
 				},
 				{
 					path: 'dakaxinxi',

@@ -48,7 +48,7 @@
           <el-form-item class="balance" :style='{"width":"100%","padding":"10px","margin":"0 0 10px","background":"#fff","display":"inline-block"}' v-if="userTableName=='yonghu'" label="会员">
             <div :style='{"display":"flex"}'>
 				<el-input v-model="sessionForm.vip" placeholder="会员" readonly></el-input>
-				<div @click="dialogFormVisibleVip = true" :style='{"border":"0","cursor":"pointer","padding":"0 15px","margin":"0 20px 0 0","color":"rgba(255, 255, 255, 1)","display":"inline-block","outline":"none","borderRadius":"0","background":"#BECCBA","width":"100px","lineHeight":"40px","fontSize":"14px","height":"40px"}'>会员购买</div>
+				<div @click="dialogFormVisibleVip = true" :style='{"border":"0","cursor":"pointer","padding":"0 15px","margin":"0 20px 0 0","color":"rgba(255, 255, 255, 1)","display":"inline-block","outline":"none","borderRadius":"0","background":"#BECCBA","width":"100px","lineHeight":"40px","fontSize":"14px","height":"40px"}'>{{sessionForm.vip == "普通会员"?"会员购买":sessionForm.vip == "半年卡"?"会员升级":"会员续费"}}</div>
 			</div>
 		  </el-form-item>
           <el-form-item :style='{"width":"100%","padding":"10px","margin":"0 0 10px","background":"#fff","display":"inline-block"}' v-if="userTableName=='jianshenjiaolian'" label="工号" prop="gonghao">
@@ -155,11 +155,72 @@
             <el-button type="primary" @click="chongzhi">确认充值</el-button>
           </div>
         </el-dialog>
-        <el-dialog title="会员购买" :visible.sync="dialogFormVisibleVip" width="726px" center>
+        <el-dialog title="会员购买" :visible.sync="dialogFormVisibleVip" style="margin-top: -5vh" width="726px" center>
           <el-form :model="chongzhiForm">
-            <el-form-item label="会员卡" label-width="120px">
-              <el-input readonly autocomplete="off" value="￥199/年"></el-input>
-            </el-form-item>
+              <div style="margin-left: 20%">
+                  <div class="demo" id="pricePlans">
+                      <ul id="plans" style="width:120%">
+                          <li class="plan">
+                              <ul class="planContainer" style="height: 400px">
+                                  <li class="title"><h2>普通会员</h2></li>
+                                  <li class="price"><p><span>免费</span></p></li>
+                                  <li>
+                                      <ul class="options">
+                                          <li>教练 1对1 <span style="color: #f37b1d;font-weight: bold">√</span></li>
+                                          <li>进店免费零食饮品 <span style="color: #f37b1d;font-weight: bold">√</span></li>
+                                          <li>无课程免费 <span style="color: #f37b1d;font-weight: bold">√</span></li>
+                                          <li>专属客服<span style="color: #f37b1d;font-weight: bold">×</span></li>
+                                          <li>专属健身区<span style="color: #f37b1d;font-weight: bold">×</span></li>
+                                      </ul>
+                                  </li>
+                              </ul>
+                          </li>
+
+                          <li class="plan">
+                              <ul class="planContainer" style="height: 400px">
+                                  <li class="title"><h2 class="bestPlanTitle">年卡</h2></li>
+                                  <li class="price">
+                                      <p class="bestPlanPrice">
+                                          <span v-show="sessionForm.vip == '普通会员' || sessionForm.vip == '年卡'">￥188</span>
+                                          <span v-show="sessionForm.vip == '半年卡'">￥89</span>
+                                      </p>
+                                  </li>
+                                  <li>
+                                      <ul class="options">
+                                          <li>教练 1对1 <span style="color: #f37b1d;font-weight: bold">√</span></li>
+                                          <li>进店免费零食饮品 <span style="color: #f37b1d;font-weight: bold">√</span></li>
+                                          <li>12个课程免费 <span style="color: #f37b1d;font-weight: bold">√</span></li>
+                                          <li>专属客服<span style="color: #f37b1d;font-weight: bold">√</span></li>
+                                          <li>专属健身区<span style="color: #f37b1d;font-weight: bold">√</span></li>
+                                      </ul>
+                                  </li>
+                                  <li class="button" v-show="sessionForm.vip == '普通会员'"><a class="bestPlanButton" href="#" @click="chongzhivip('年卡',188)">点击购买</a></li>
+                                  <li class="button" v-show="sessionForm.vip == '半年卡'"><a class="bestPlanButton" href="#" @click="chongzhivip('年卡',89,2)">升级年卡</a></li>
+                                  <li class="button" v-show="sessionForm.vip == '年卡'"><a class="bestPlanButton" href="#" @click="chongzhivip('年卡',188,1)">年卡续费</a></li>
+                              </ul>
+                          </li>
+
+                          <li class="plan">
+                              <ul class="planContainer" style="height: 400px">
+                                  <li class="title"><h2>半年卡</h2></li>
+                                  <li class="price"><p>￥99</p></li>
+                                  <li>
+                                      <ul class="options">
+                                          <li>教练 1对1<span style="color: #f37b1d;font-weight: bold">√</span></li>
+                                          <li>进店免费零食饮品<span style="color: #f37b1d;font-weight: bold">√</span></li>
+                                          <li>6个课程免费<span style="color: #f37b1d;font-weight: bold">√</span></li>
+                                          <li>专属客服<span style="color: #f37b1d;font-weight: bold">√</span></li>
+                                          <li>专属健身区 <span style="color: #f37b1d;font-weight: bold">×</span></li>
+                                      </ul>
+                                  </li>
+                                  <li class="button" v-show="sessionForm.vip == '普通会员'" ><a href="#" @click="chongzhivip('半年卡',99)">点击购买</a></li>
+                              </ul>
+                          </li>
+
+                      </ul>
+                  </div>
+              </div>
+
             <el-form-item label-width="120px">
               <el-radio-group v-model="chongzhiForm.radio">
                 <el-radio style="margin-bottom: 30px" label="微信支付">
@@ -203,10 +264,6 @@
               </el-radio-group>
             </el-form-item>
           </el-form>
-          <div slot="footer" class="dialog-footer">
-            <el-button @click="dialogFormVisibleVip = false">取 消</el-button>
-            <el-button type="primary" @click="chongzhivip">确认支付</el-button>
-          </div>
         </el-dialog>
       </el-tab-pane>
       <el-tab-pane label="我的订单"></el-tab-pane>
@@ -220,6 +277,7 @@
 <script>
   import config from '@/config/config'
   import Vue from 'vue'
+  import "@/assets/css/style.css"
   export default {
     //数据集合
     data() {
@@ -437,8 +495,8 @@
           }
         });
       },
-      chongzhivip() {
-        this.chongzhiForm.money == 199;
+      chongzhivip(vip,money,isRenew) {
+        this.chongzhiForm.money == money;
         if (this.chongzhiForm.radio == '') {
           this.$message({
             message: '请选择支付方式',
@@ -447,25 +505,23 @@
           });
           return;
         }
-        if(this.sessionForm.vip == '是') {
-          this.$message({
-            message: '您已是我们的尊贵会员。',
-            type: 'success',
-            duration: 1500
-          });
-          return;
+        this.sessionForm.vip = vip;
+        var successMessage = "共享您"+vip+"购买成功";
+        if(isRenew && isRenew === 1){
+            successMessage = "共享您续费"+vip+"成功";
         }
-
-        this.sessionForm.vip = "是"
+        if(isRenew && isRenew === 2){
+            successMessage = "共享您升级"+vip+"成功";
+        }
+        this.dialogFormVisibleVip = false;
         this.$http.post(this.userTableName + '/update', this.sessionForm).then(res => {
           if (res.data.code == 0) {
             this.$message({
-              message: '会员购买成功',
+              message: successMessage,
               type: 'success',
               duration: 1500,
               onClose: () => {
                 localStorage.setItem('vip', this.sessionForm.vip);
-                this.dialogFormVisibleVip = false;
               }
             });
           }

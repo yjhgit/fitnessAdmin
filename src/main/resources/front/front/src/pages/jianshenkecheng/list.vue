@@ -6,10 +6,10 @@
 			<el-breadcrumb-item v-for="(item, index) in breadcrumbItem" :key="index">{{item.name}}</el-breadcrumb-item>
 		</el-breadcrumb>
 	</div>
-	
+
 	<div class="list-preview" :style='{"width":"100%","padding":"0 25%","margin":"10px auto","backgroundSize":"100% 100%","position":"relative","backgroundImage":"url(http://codegen.caihongy.cn/20221015/488d1f34fa534cb2836bd3c6e39f8e92.png)"}'>
-		
-	
+
+
     <el-form :inline="true" :model="formSearch" class="list-form-pv" :style='{"padding":"10px","alignItems":"center","borderRadius":"10px","flexWrap":"wrap","background":"#BECCBA","display":"flex","width":"100%","height":"auto"}'>
       <el-form-item :style='{"margin":"5px 10px"}'>
 	    <div class="lable" v-if="true" :style='{"width":"auto","padding":"0 10px","lineHeight":"42px","display":"inline-block"}'>课程名称</div>
@@ -36,15 +36,16 @@
 				<div v-if="item.price" :style='{"padding":"10px","lineHeight":"32px","fontSize":"18px","color":"red","textAlign":"center"}' class="price"><span :style='{"fontSize":"12px"}'>￥</span>{{item.price}}</div>
 				<div :style='{"padding":"0 10px","margin":"3px auto","color":"#fff","borderRadius":"20px","textAlign":"center","background":"#BECCBA","width":"80%","lineHeight":"32px","fontSize":"14px"}' class="name ">{{item.kechengmingcheng}}</div>
 				<div :style='{"padding":"0 10px","margin":"3px auto","color":"#fff","borderRadius":"20px","textAlign":"center","background":"#BECCBA","width":"80%","lineHeight":"32px","fontSize":"14px"}' class="name ">{{item.shangkeshijian}}</div>
-				<div :style='{"padding":"0 10px","margin":"3px auto","color":"#fff","borderRadius":"20px","textAlign":"center","background":"#BECCBA","width":"80%","lineHeight":"32px","fontSize":"14px"}' class="name ">价格:{{item.jiage}}</div>
+				<div :style='{"padding":"0 10px","margin":"3px auto","color":"#fff","borderRadius":"20px","textAlign":"center","background":"#BECCBA","width":"80%","lineHeight":"32px","fontSize":"14px"}' class="name ">价格:{{ vip == "普通会员" || (vip == "半年卡" && item.curriculumlevel == 3)?item.jiage:"免费"}}</div>
 				<div :style='{"padding":"0 10px","margin":"3px auto","color":"#fff","borderRadius":"20px","textAlign":"center","background":"#BECCBA","width":"80%","lineHeight":"32px","fontSize":"14px"}' class="name ">{{item.jiaolianxingming}}</div>
+				<div :style='{"padding":"0 10px","margin":"3px auto","color":"#fff","borderRadius":"20px","textAlign":"center","background":"#BECCBA","width":"80%","lineHeight":"32px","fontSize":"14px"}' class="name ">{{item.curriculumlevel==1?"普通课程":item.curriculumlevel==2?"半年卡课程":"年卡课程"}}</div>
 			</div>
 		</div>
-		
+
 		<!-- 样式二 -->
 	</div>
 
-	
+
 	<el-pagination
 	  background
 	  class="pagination"
@@ -72,6 +73,7 @@
     data() {
       return {
 	    layouts: '',
+	    vip: localStorage.getItem('vip'),
 		swiperIndex: -1,
         baseUrl: '',
         breadcrumbItem: [
@@ -121,7 +123,7 @@
             this.total = res.data.data.total;
             this.pageSize = res.data.data.pageSize;
             this.totalPage = res.data.data.totalPage;
-			
+
 			this.pageSizes = [this.pageSize, this.pageSize*2, this.pageSize*3, this.pageSize*5];
           }
         });
@@ -152,17 +154,17 @@
 		color: #fff;
 		font-weight: 500;
 	}
-	
+
 	.breadcrumb-preview .el-breadcrumb /deep/ .el-breadcrumb__inner a {
 		color: #fff;
 		display: inline-block;
 	}
-	
+
 	.breadcrumb-preview .el-breadcrumb /deep/ .el-breadcrumb__inner {
 		color: #fff;
 		display: inline-block;
 	}
-	
+
 	.category-1 .item {
 		cursor: pointer;
 		border-radius: 4px;
@@ -174,7 +176,7 @@
 		line-height: 36px;
 		text-align: center;
 	}
-	
+
 	.category-1 .item:hover {
 		cursor: pointer;
 		border-radius: 4px;
@@ -185,7 +187,7 @@
 		line-height: 36px;
 		text-align: center;
 	}
-	
+
 	.category-1 .item.active {
 		cursor: pointer;
 		border-radius: 4px;
@@ -197,7 +199,7 @@
 		line-height: 36px;
 		text-align: center;
 	}
-	
+
 	.category-2 .item {
 		cursor: pointer;
 		border-radius: 4px;
@@ -209,7 +211,7 @@
 		line-height: 36px;
 		text-align: center;
 	}
-	
+
 	.category-2 .item:hover {
 		cursor: pointer;
 		border-radius: 4px;
@@ -221,7 +223,7 @@
 		line-height: 36px;
 		text-align: center;
 	}
-	
+
 	.category-2 .item.active {
 		cursor: pointer;
 		border-radius: 4px;
@@ -233,7 +235,7 @@
 		line-height: 36px;
 		text-align: center;
 	}
-	
+
 	.list-form-pv .el-input /deep/ .el-input__inner {
 		border: 0;
 		border-radius: 8px;
@@ -246,7 +248,7 @@
 		line-height: 42px;
 		height: 42px;
 	}
-	
+
 	.list-form-pv .el-select /deep/ .el-input__inner {
 		border: 0;
 		border-radius: 8px;
@@ -259,7 +261,7 @@
 		line-height: 42px;
 		height: 42px;
 	}
-	
+
 	.list-form-pv .el-date-editor /deep/ .el-input__inner {
 		border: 0;
 		border-radius: 8px;
@@ -272,12 +274,12 @@
 		line-height: 42px;
 		height: 42px;
 	}
-	
+
 	.list .index-pv1 .animation-box {
 		transform: rotate(0deg) scale(1) skew(0deg, 0deg) translate3d(0px, 0px, 0px);
 		z-index: initial;
 	}
-	
+
 	.list .index-pv1 .animation-box:hover {
 		transform: skew(0deg, 0deg) translate3d(0px, 0px, 0px);
 		-webkit-perspective: 1000px;
@@ -285,18 +287,18 @@
 		transition: 0.3s;
 		z-index: 1;
 	}
-	
+
 	.list .index-pv1 .animation-box img {
 		transform: rotate(0deg) scale(1) skew(0deg, 0deg) translate3d(0px, 0px, 0px);
 	}
-	
+
 	.list .index-pv1 .animation-box img:hover {
 		transform: scale(0.9) skew(0deg, 0deg) translate3d(0px, 0px, 0px);
 		-webkit-perspective: 1000px;
 		perspective: 1000px;
 		transition: 0.3s;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__total {
 		margin: 0 10px 0 0;
 		color: #666;
@@ -307,7 +309,7 @@
 		line-height: 28px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .btn-prev {
 		border: none;
 		border-radius: 2px;
@@ -322,7 +324,7 @@
 		min-width: 35px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .btn-next {
 		border: none;
 		border-radius: 2px;
@@ -337,7 +339,7 @@
 		min-width: 35px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .btn-prev:disabled {
 		border: none;
 		cursor: not-allowed;
@@ -352,7 +354,7 @@
 		line-height: 28px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .btn-next:disabled {
 		border: none;
 		cursor: not-allowed;
@@ -367,14 +369,14 @@
 		line-height: 28px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .el-pager {
 		padding: 0;
 		margin: 0;
 		display: inline-block;
 		vertical-align: top;
 	}
-	
+
 	.el-pagination /deep/ .el-pager .number {
 		cursor: pointer;
 		padding: 0 4px;
@@ -390,7 +392,7 @@
 		min-width: 30px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .el-pager .number:hover {
 		cursor: pointer;
 		padding: 0 4px;
@@ -406,7 +408,7 @@
 		min-width: 30px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .el-pager .number.active {
 		cursor: default;
 		padding: 0 4px;
@@ -422,7 +424,7 @@
 		min-width: 30px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__sizes {
 		display: inline-block;
 		vertical-align: top;
@@ -430,13 +432,13 @@
 		line-height: 28px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__sizes .el-input {
 		margin: 0 5px;
 		width: 100px;
 		position: relative;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__sizes .el-input .el-input__inner {
 		border: 1px solid #DCDFE6;
 		cursor: pointer;
@@ -452,14 +454,14 @@
 		text-align: center;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__sizes .el-input span.el-input__suffix {
 		top: 0;
 		position: absolute;
 		right: 0;
 		height: 100%;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__sizes .el-input .el-input__suffix .el-select__caret {
 		cursor: pointer;
 		color: #C0C4CC;
@@ -468,7 +470,7 @@
 		line-height: 28px;
 		text-align: center;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__jump {
 		margin: 0 0 0 24px;
 		color: #606266;
@@ -478,7 +480,7 @@
 		line-height: 28px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__jump .el-input {
 		border-radius: 3px;
 		padding: 0 2px;
@@ -491,7 +493,7 @@
 		text-align: center;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__jump .el-input .el-input__inner {
 		border: 1px solid #DCDFE6;
 		cursor: pointer;

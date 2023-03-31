@@ -51,19 +51,19 @@
 						</template>
 					</el-table-column>
 					<el-table-column :resizable='true' :sortable='false'
-						prop="changdimingcheng"
-					label="场地名称">
-						<template slot-scope="scope">
-							{{scope.row.changdimingcheng}}
-						</template>
-					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false'
 						prop="yuyueshijian"
 					label="预约时间">
 						<template slot-scope="scope">
 							{{scope.row.yuyueshijian}}
 						</template>
 					</el-table-column>
+                    <el-table-column :resizable='true' :sortable='false'
+                                     prop="timeFrame"
+                                     label="预约时段">
+                        <template slot-scope="scope">
+                            {{scope.row.timeFrame}}
+                        </template>
+                    </el-table-column>
 					<el-table-column :resizable='true' :sortable='false'
 						prop="yonghuming"
 					label="用户名">
@@ -85,17 +85,21 @@
 							{{scope.row.shouji}}
 						</template>
 					</el-table-column>
+                    <el-table-column :resizable='true' :sortable='false'
+                                     prop="state"
+                                     label="预约状态">
+                        <template slot-scope="scope">
+                            <span v-show="scope.row.state == 0">已取消</span>
+                            <span v-show="scope.row.state == 1">已预约</span>
+                            <span v-show="scope.row.state == 2">已完成</span>
+                        </template>
+                    </el-table-column>
 					<el-table-column width="300" label="操作">
 						<template slot-scope="scope">
 							<el-button :style='{"border":"1px solid #999","cursor":"pointer","padding":"0 16px","margin":"3px 6px 3px 0","outline":"none","color":"#333","borderRadius":"4px","background":"none","width":"auto","fontSize":"14px","height":"32px"}' v-if=" isAuth('jiaolianyuyue','查看')" type="success" size="mini" @click="addOrUpdateHandler(scope.row.id,'info')">详情</el-button>
-							<el-button :style='{"border":"1px solid #999","cursor":"pointer","padding":"0 16px","margin":"3px 6px 3px 0","outline":"none","color":"#333","borderRadius":"4px","background":"none","width":"auto","fontSize":"14px","height":"32px"}' v-if="isAuth('jiaolianyuyue','取消')" type="success" size="mini" @click="yuyuequxiaoCrossAddOrUpdateHandler(scope.row,'cross','','[1]','已取消！')">取消</el-button>
 							<el-button :style='{"border":"1px solid #7a89d3","cursor":"pointer","padding":"0 16px","margin":"3px 6px 3px 0","outline":"none","color":"#7a89d3","borderRadius":"4px","background":"none","width":"auto","fontSize":"14px","height":"32px"}' v-if=" isAuth('jiaolianyuyue','修改')" type="primary" size="mini" @click="addOrUpdateHandler(scope.row.id)">修改</el-button>
-
-
-
-
-
 							<el-button :style='{"border":"1px solid #f8566d","cursor":"pointer","padding":"0 16px","margin":"3px 6px 3px 0","outline":"none","color":"#f8566d","borderRadius":"4px","background":"none","width":"auto","fontSize":"14px","height":"32px"}' v-if="isAuth('jiaolianyuyue','删除') " type="danger" size="mini" @click="deleteHandler(scope.row.id)">删除</el-button>
+							<el-button v-show="scope.row.state == 1" :style='{"border":"1px solid #f8566d","cursor":"pointer","padding":"0 16px","margin":"3px 6px 3px 0","outline":"none","color":"#f8566d","borderRadius":"4px","background":"none","width":"auto","fontSize":"14px","height":"32px"}'  type="danger" size="mini" @click="cancel(scope.row)">取消</el-button>
 						</template>
 					</el-table-column>
 				</el-table>
@@ -189,6 +193,13 @@ export default {
 
     contentStyleChange() {
       this.contentPageStyleChange()
+    },
+    cancel(rowData){
+      this.$http.get('jiaolianyuyue/cancel?id='+rowData.id).then(res => {
+          if (res.data.code == 0) {
+              this.getDataList();
+          }
+      });
     },
     // 分页
     contentPageStyleChange(){

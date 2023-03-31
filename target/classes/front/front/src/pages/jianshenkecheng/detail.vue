@@ -6,7 +6,7 @@
 			<el-breadcrumb-item v-for="(item, index) in breadcrumbItem" :key="index">{{item.name}}</el-breadcrumb-item>
 		</el-breadcrumb>
 	</div>
-	
+
 	<div class="detail-preview" :style='{"width":"1000px","margin":"10px auto","position":"relative"}'>
 		<div class="attr" :style='{"padding":"20px","position":"relative","flexWrap":"wrap","display":"flex"}'>
 			<el-carousel :style='{"width":"400px","margin":"10px auto 100px","height":"400px"}' trigger="click" indicator-position="inside" arrow="always" type="default" direction="horizontal" height="400px" autoplay="false" interval="3000" loop="true">
@@ -15,8 +15,8 @@
 					<el-image :style='{"objectFit":"cover","width":"100%","height":"100%"}' v-else :src="baseUrl + item" fit="cover" class="image"></el-image>
 				</el-carousel-item>
 			</el-carousel>
-	
-			
+
+
 			<div class="info" :style='{"width":"100%","padding":"10px","boxShadow":"0px 4px 10px 0px rgba(0,0,0,0.302)","margin":"0","background":"#F5F5F5"}'>
 				<div class="item" :style='{"padding":"10px","margin":"0 0 10px 0","alignItems":"center","background":"#f5f5f5","justifyContent":"space-between","display":"flex"}'>
 					<div :style='{"color":"#000","fontSize":"16px"}'>
@@ -39,8 +39,8 @@
 					<div  :style='{"padding":"0 10px","color":"#666","display":"inline-block","width":"calc(100% - 110px)","fontSize":"14px","lineHeight":"40px","height":"40px"}'>{{detail.jiage}}</div>
 				</div>
 				<div class="item" :style='{"width":"50%","padding":"10px","margin":"0 0 10px 0","background":"#f5f5f5","justifyContent":"spaceBetween","display":"inline-block"}'>
-					<div class="lable" :style='{"padding":"0 10px","color":"#999","textAlign":"right","display":"inline-block","width":"110px","fontSize":"14px","lineHeight":"40px","height":"40px"}'>工号</div>
-					<div  :style='{"padding":"0 10px","color":"#666","display":"inline-block","width":"calc(100% - 110px)","fontSize":"14px","lineHeight":"40px","height":"40px"}'>{{detail.gonghao}}</div>
+					<div class="lable" :style='{"padding":"0 10px","color":"#999","textAlign":"right","display":"inline-block","width":"110px","fontSize":"14px","lineHeight":"40px","height":"40px"}'>课程层级</div>
+					<div  :style='{"padding":"0 10px","color":"#666","display":"inline-block","width":"calc(100% - 110px)","fontSize":"14px","lineHeight":"40px","height":"40px"}'>{{detail.curriculumlevel==1?"普通课程":detail.curriculumlevel==2?"半年卡课程":"年卡课程"}}</div>
 				</div>
 				<div class="item" :style='{"width":"50%","padding":"10px","margin":"0 0 10px 0","background":"#f5f5f5","justifyContent":"spaceBetween","display":"inline-block"}'>
 					<div class="lable" :style='{"padding":"0 10px","color":"#999","textAlign":"right","display":"inline-block","width":"110px","fontSize":"14px","lineHeight":"40px","height":"40px"}'>教练姓名</div>
@@ -54,10 +54,10 @@
 					<el-button :style='{"border":"0","cursor":"pointer","padding":"0 10px","margin":"0 5px 0 0","outline":"none","color":"#fff","borderRadius":"4px","background":"#BECCBA","width":"auto","lineHeight":"40px","fontSize":"14px","height":"40px"}' v-if="isAuth('jianshenkecheng','选课')" @click="onAcross('xuankexinxi','','[1]','已选该课程！')" type="warning">选课</el-button>
 				</div>
 			</div>
-			
+
 		</div>
-		
-		
+
+
 		<el-tabs class="detail" :style='{"border":"1px solid #DCDFE6","boxShadow":"0 1px 6px 0 rgba(0, 0, 0, .1)","background":"#FFF"}' v-model="activeName" type="border-card">
 			<el-tab-pane label="课程介绍" name="first">
 				<div v-html="detail.kechengjieshao"></div>
@@ -72,7 +72,7 @@
 						<el-button :style='{"border":"0","cursor":"pointer","padding":"0","margin":"0 20px 0 0","outline":"none","color":"rgba(255, 255, 255, 1)","borderRadius":"4px","background":"#BECCBA","width":"128px","lineHeight":"40px","fontSize":"14px","height":"40px"}' @click="resetForm('form')">重置</el-button>
 					</el-form-item>
 				</el-form>
-				
+
 				<div v-if="infoList.length" :style='{"boxShadow":"0 1px 6px 0 rgba(0, 0, 0, .1)","padding":"15px"}' class="comment">
 					<div :style='{"padding":"8px 0","margin":"0 0 20px","borderColor":"#999","alignItems":"center","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-for="item in infoList" :key="item.id">
 						<div class="user" :style='{"width":"100%","alignItems":"center","display":"flex","height":"auto"}'>
@@ -88,7 +88,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<el-pagination
 				  background
 				  class="pagination"
@@ -106,7 +106,7 @@
 				  @next-click="nextClick"
 				></el-pagination>
 			</el-tab-pane>
-			
+
 		</el-tabs>
 	</div>
 </div>
@@ -316,46 +316,46 @@
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 	.detail-preview {
-	
+
 	  .attr {
 	    .el-carousel /deep/ .el-carousel__indicator button {
 	      width: 0;
 	      height: 0;
 	      display: none;
 	    }
-	
+
 	    .el-input-number__decrease:hover:not(.is-disabled)~.el-input .el-input__inner:not(.is-disabled), .el-input-number__increase:hover:not(.is-disabled)~.el-input .el-input__inner:not(.is-disabled) {
 	      border-color: none;
 	    }
 	  }
-	
+
 	  .detail {
 	    & /deep/ .el-tabs__header .el-tabs__nav-wrap {
 	      margin-bottom: 0;
 	    }
-	
+
 	    & .add .el-textarea {
 	      width: auto;
 	    }
 	  }
 	}
-	
+
 	.attr .el-carousel /deep/ .el-carousel__container .el-carousel__arrow--left {
 		width: 36px;
 		font-size: 12px;
 		height: 36px;
 	}
-	
+
 	.attr .el-carousel /deep/ .el-carousel__container .el-carousel__arrow--left:hover {
 		background: red;
 	}
-	
+
 	.attr .el-carousel /deep/ .el-carousel__container .el-carousel__arrow--right {
 		width: 36px;
 		font-size: 12px;
 		height: 36px;
 	}
-	
+
 	.attr .el-carousel /deep/ .el-carousel__container .el-carousel__arrow--right:hover {
 		background: red;
 	}
@@ -368,7 +368,7 @@
 		position: absolute;
 		list-style: none;
 	}
-	
+
 	.attr .el-carousel /deep/ .el-carousel__indicators li {
 		border-radius: 10px;
 		padding: 0;
@@ -380,7 +380,7 @@
 		transition: 0.3s;
 		height: 12px;
 	}
-	
+
 	.attr .el-carousel /deep/ .el-carousel__indicators li:hover {
 		padding: 0;
 		margin: 0 4px;
@@ -390,7 +390,7 @@
 		opacity: 0.7;
 		height: 12px;
 	}
-	
+
 	.attr .el-carousel /deep/ .el-carousel__indicators li.is-active {
 		padding: 0;
 		margin: 0 4px;
@@ -400,7 +400,7 @@
 		opacity: 1;
 		height: 12px;
 	}
-	
+
 	.attr .el-input-number /deep/ .el-input-number__decrease {
 		cursor: pointer;
 		z-index: 1;
@@ -419,7 +419,7 @@
 		text-align: center;
 		height: 38px;
 	}
-	
+
 	.attr .el-input-number /deep/ .el-input-number__decrease i {
 		color: #666;
 		font-size: 14px;
@@ -443,12 +443,12 @@
 		text-align: center;
 		height: 38px;
 	}
-	
+
 	.attr .el-input-number /deep/ .el-input-number__increase i {
 		color: #666;
 		font-size: 14px;
 	}
-	
+
 	.attr .el-input-number /deep/ .el-input .el-input__inner {
 		border: 1px solid #DCDFE6;
 		border-radius: 4px;
@@ -463,7 +463,7 @@
 		text-align: center;
 		height: 40px;
 	}
-	
+
 	.detail-preview .detail.el-tabs /deep/ .el-tabs__header {
 		margin: 0;
 		background: #D8D8D8;
@@ -471,7 +471,7 @@
 		border-width: 0 0 1px 0;
 		border-style: solid;
 	}
-	
+
 	.detail-preview .detail.el-tabs /deep/ .el-tabs__header .el-tabs__item {
 		border: 0;
 		padding: 0 20px;
@@ -486,12 +486,12 @@
 		list-style: none;
 		height: 40px;
 	}
-	
+
 	.detail-preview .detail.el-tabs /deep/ .el-tabs__header .el-tabs__item:hover {
 		border: 0;
 		color: #768169;
 	}
-	
+
 	.detail-preview .detail.el-tabs /deep/ .el-tabs__header .el-tabs__item.is-active {
 		border: 0;
 		color: #768169;
@@ -499,11 +499,11 @@
 		border-width: 0 0 5px;
 		border-style: solid;
 	}
-	
+
 	.detail-preview .detail.el-tabs /deep/ .el-tabs__content {
 		padding: 15px;
 	}
-	
+
 	.detail-preview .detail.el-tabs .add /deep/ .el-form-item__label {
 		padding: 0 10px 0 0;
 		color: #666;
@@ -512,7 +512,7 @@
 		line-height: 40px;
 		text-align: right;
 	}
-	
+
 	.detail-preview .detail.el-tabs .add /deep/ .el-textarea__inner {
 		border: 0;
 		border-radius: 4px;
@@ -525,13 +525,13 @@
 		line-height: 32px;
 		height: 120px;
 	}
-	
+
 	.breadcrumb-preview .el-breadcrumb /deep/ .el-breadcrumb__separator {
 		margin: 0 9px;
 		color: #fff;
 		font-weight: 500;
 	}
-	
+
 	.breadcrumb-preview .el-breadcrumb /deep/ .el-breadcrumb__inner a {
 		color: #fff;
 		display: inline-block;
@@ -541,7 +541,7 @@
 		color: #fff;
 		display: inline-block;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__total {
 		margin: 0 10px 0 0;
 		color: #666;
@@ -552,7 +552,7 @@
 		line-height: 28px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .btn-prev {
 		border: none;
 		border-radius: 2px;
@@ -567,7 +567,7 @@
 		min-width: 35px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .btn-next {
 		border: none;
 		border-radius: 2px;
@@ -582,7 +582,7 @@
 		min-width: 35px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .btn-prev:disabled {
 		border: none;
 		cursor: not-allowed;
@@ -597,7 +597,7 @@
 		line-height: 28px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .btn-next:disabled {
 		border: none;
 		cursor: not-allowed;
@@ -612,14 +612,14 @@
 		line-height: 28px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .el-pager {
 		padding: 0;
 		margin: 0;
 		display: inline-block;
 		vertical-align: top;
 	}
-	
+
 	.el-pagination /deep/ .el-pager .number {
 		cursor: pointer;
 		padding: 0 4px;
@@ -635,7 +635,7 @@
 		min-width: 30px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .el-pager .number:hover {
 		cursor: pointer;
 		padding: 0 4px;
@@ -667,7 +667,7 @@
 		min-width: 30px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__sizes {
 		display: inline-block;
 		vertical-align: top;
@@ -675,13 +675,13 @@
 		line-height: 28px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__sizes .el-input {
 		margin: 0 5px;
 		width: 100px;
 		position: relative;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__sizes .el-input .el-input__inner {
 		border: 1px solid #DCDFE6;
 		cursor: pointer;
@@ -697,14 +697,14 @@
 		text-align: center;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__sizes .el-input span.el-input__suffix {
 		top: 0;
 		position: absolute;
 		right: 0;
 		height: 100%;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__sizes .el-input .el-input__suffix .el-select__caret {
 		cursor: pointer;
 		color: #C0C4CC;
@@ -723,7 +723,7 @@
 		line-height: 28px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__jump .el-input {
 		border-radius: 3px;
 		padding: 0 2px;
@@ -736,7 +736,7 @@
 		text-align: center;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__jump .el-input .el-input__inner {
 		border: 1px solid #DCDFE6;
 		cursor: pointer;

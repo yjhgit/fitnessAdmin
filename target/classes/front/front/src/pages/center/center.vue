@@ -37,7 +37,7 @@
             <el-input v-model="sessionForm.shouji" placeholder="手机" ></el-input>
           </el-form-item>
           <el-form-item :style='{"width":"100%","padding":"10px","margin":"0 0 10px","background":"#fff","display":"inline-block"}' label="健身简介" prop="synopsis">
-            <el-input type="textarea" v-model="sessionForm.synopsis" placeholder="健身简介" ></el-input>
+            <el-input type="textarea" class="readonly" style="width: 45%" v-model="sessionForm.synopsis" placeholder="健身简介" ></el-input>
           </el-form-item>
           <el-form-item class="balance" :style='{"width":"100%","padding":"10px","margin":"0 0 10px","background":"#fff","display":"inline-block"}' v-if="userTableName=='yonghu'" label="余额">
             <div :style='{"display":"flex"}'>
@@ -484,7 +484,7 @@
             tab.$router.push('/index/storeup');
             break;
           case '选课信息':
-            tab.$router.push('/index/storeup');
+            tab.$router.push('/index/xuankexinxiListShow');
             break;
           case '我的预约':
             tab.$router.push('/index/jiaolianyuyueListShow');
@@ -609,7 +609,7 @@
     margin-left: 110px;
   }
 
-  .center-preview-pv .el-input /deep/ .el-input__inner {
+  .center-preview-pv .el-input /deep/ .el-input__inner  {
   	border: 0;
   	border-radius: 4px;
   	padding: 0 12px;
@@ -619,10 +619,6 @@
   	width: 300px;
   	font-size: 14px;
   	height: 40px;
-  }
-
-  .key input[type="textarea"] {
-      background: #BECCBA;
   }
 
   .center-preview-pv .el-select /deep/ .el-input__inner {
@@ -671,5 +667,10 @@
   	width: 100%;
   	font-size: 14px;
   	height: 40px;
+  }
+  ::v-deep .readonly .el-textarea__inner {
+      background-color: #BECCBA;
+      color: #000;
+      font-size: 16px;
   }
 </style>

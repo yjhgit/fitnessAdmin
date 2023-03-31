@@ -18,6 +18,11 @@
                     <span >{{ scope.row.kechengleixing }}</span>
                 </template>
             </el-table-column>
+            <el-table-column label="课程层级">
+                <template slot-scope="scope">
+                    <span >{{ scope.row.curriculumlevel==1?"普通课程":scope.row.curriculumlevel==2?"半年卡课程":"年卡课程" }}</span>
+                </template>
+            </el-table-column>
             <el-table-column label="教练姓名">
                 <template slot-scope="scope">
                     <span >{{ scope.row.jiaolianxingming }}</span>
@@ -47,7 +52,7 @@
         </el-table>
         <el-dialog title="用户充值" :visible.sync="dialogFormVisibleMoney" width="726px" center>
             <el-form >
-                <span style="display: inline-block;margin-left: 20%;margin-bottom: 20px"> 支付金额 &nbsp;<b>{{ this.money }}</b>&nbsp; 元</span>
+                <span style="display: inline-block;margin-left: 20%;margin-bottom: 20px"> 支付金额 &nbsp;<b>{{ this.ruleForm.money }}</b>&nbsp; 元</span>
                 <el-form-item label-width="120px">
                     <el-radio-group v-model="radio">
                         <el-radio style="margin-bottom: 30px" label="微信支付">

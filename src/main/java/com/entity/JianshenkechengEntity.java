@@ -24,8 +24,8 @@ import com.baomidou.mybatisplus.enums.IdType;
 /**
  * 健身课程
  * 数据库通用操作实体类（普通增删改查）
- * @author 
- * @email 
+ * @author
+ * @email
  * @date 2023-03-06 17:36:53
  */
 @TableName("jianshenkecheng")
@@ -34,9 +34,9 @@ public class JianshenkechengEntity<T> implements Serializable {
 
 
 	public JianshenkechengEntity() {
-		
+
 	}
-	
+
 	public JianshenkechengEntity(T t) {
 		try {
 			BeanUtils.copyProperties(this, t);
@@ -45,7 +45,7 @@ public class JianshenkechengEntity<T> implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * 主键id
 	 */
@@ -54,62 +54,68 @@ public class JianshenkechengEntity<T> implements Serializable {
 	/**
 	 * 课程名称
 	 */
-					
+
 	private String kechengmingcheng;
-	
+
 	/**
 	 * 课程类型
 	 */
-					
+
 	private String kechengleixing;
-	
+
 	/**
 	 * 图片
 	 */
-					
+
 	private String tupian;
-	
+
 	/**
 	 * 上课时间
 	 */
-				
+
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
-	@DateTimeFormat 		
+	@DateTimeFormat
 	private Date shangkeshijian;
-	
+
 	/**
 	 * 价格
 	 */
-					
+
 	private Integer jiage;
-	
+
 	/**
 	 * 工号
 	 */
-					
+
 	private String gonghao;
-	
+
 	/**
 	 * 教练姓名
 	 */
-					
+
 	private String jiaolianxingming;
-	
+
 	/**
 	 * 发布时间
 	 */
-				
+
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-	@DateTimeFormat 		
+	@DateTimeFormat
 	private Date fabushijian;
-	
+
 	/**
 	 * 课程介绍
 	 */
-					
+
 	private String kechengjieshao;
-	
-	
+
+	/**
+	 * 课程层级
+	 */
+
+	private Integer curriculumlevel;
+
+
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
 	private Date addtime;
@@ -237,4 +243,11 @@ public class JianshenkechengEntity<T> implements Serializable {
 		return kechengjieshao;
 	}
 
+    public Integer getCurriculumlevel() {
+        return curriculumlevel;
+    }
+
+    public void setCurriculumlevel(Integer curriculumlevel) {
+        this.curriculumlevel = curriculumlevel;
+    }
 }

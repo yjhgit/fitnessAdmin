@@ -26,81 +26,88 @@
 					<el-button :style='{"border":"0","cursor":"pointer","padding":"0 24px","margin":"0 10px 0 0","outline":"none","color":"#fff","borderRadius":"4px","background":"radial-gradient(circle, rgba(57,220,217,1) 0%, rgba(34,194,182,1) 100%)","width":"auto","fontSize":"14px","height":"40px"}' v-if="isAuth('xuankexinxi','每日选课人数统计')" type="warning" @click="chartDialog2()">每日选课人数统计</el-button>
 				</el-row>
 			</el-form>
-			
+
 			<!-- <div> -->
 				<el-table class="tables"
 					:stripe='true'
-					:style='{"border":"1px","padding":"0","borderColor":"#f3b9ac","borderRadius":"0px","borderWidth":"1px 0 0 1px","background":"rgba(255,255,255,.6)","width":"100%","borderStyle":"solid"}' 
+					:style='{"border":"1px","padding":"0","borderColor":"#f3b9ac","borderRadius":"0px","borderWidth":"1px 0 0 1px","background":"rgba(255,255,255,.6)","width":"100%","borderStyle":"solid"}'
 					v-if="isAuth('xuankexinxi','查看')"
 					:data="dataList"
 					v-loading="dataListLoading"
 				@selection-change="selectionChangeHandler">
 					<el-table-column :resizable='true' type="selection" align="center" width="50"></el-table-column>
 					<el-table-column :resizable='true' :sortable='false' label="索引" type="index" width="50" />
-					<el-table-column :resizable='true' :sortable='false'  
+					<el-table-column :resizable='true' :sortable='false'
 						prop="dingdanbianhao"
 					label="订单编号">
 						<template slot-scope="scope">
 							{{scope.row.dingdanbianhao}}
 						</template>
 					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false'  
+					<el-table-column :resizable='true' :sortable='false'
 						prop="kechengmingcheng"
 					label="课程名称">
 						<template slot-scope="scope">
 							{{scope.row.kechengmingcheng}}
 						</template>
 					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false'  
+					<el-table-column :resizable='true' :sortable='false'
 						prop="kechengleixing"
 					label="课程类型">
 						<template slot-scope="scope">
 							{{scope.row.kechengleixing}}
 						</template>
 					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false'  
+					<el-table-column :resizable='true' :sortable='false'
 						prop="gonghao"
 					label="工号">
 						<template slot-scope="scope">
 							{{scope.row.gonghao}}
 						</template>
 					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false'  
+					<el-table-column :resizable='true' :sortable='false'
 						prop="jiaolianxingming"
 					label="教练姓名">
 						<template slot-scope="scope">
 							{{scope.row.jiaolianxingming}}
 						</template>
 					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false'  
+                    <el-table-column :resizable='true' :sortable='false'
+                                     prop="curriculumlevel"
+                                     label="课程层级">
+                        <template slot-scope="scope">
+                            {{scope.row.curriculumlevel==1?'普通课程':scope.row.curriculumlevel==2?'半年卡课程':'年卡课程'}}
+                        </template>
+                    </el-table-column>
+					<el-table-column :resizable='true' :sortable='false'
 						prop="jiage"
 					label="价格">
 						<template slot-scope="scope">
 							{{scope.row.jiage}}
 						</template>
 					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false'  
+					<el-table-column :resizable='true' :sortable='false'
 						prop="xiadanshijian"
 					label="下单时间">
 						<template slot-scope="scope">
 							{{scope.row.xiadanshijian}}
 						</template>
 					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false'  
+					<el-table-column :resizable='true' :sortable='false'
 						prop="yonghuming"
 					label="用户名">
 						<template slot-scope="scope">
 							{{scope.row.yonghuming}}
 						</template>
 					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false'  
+					<el-table-column :resizable='true' :sortable='false'
 						prop="xingming"
 					label="姓名">
 						<template slot-scope="scope">
 							{{scope.row.xingming}}
 						</template>
 					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false'  
+					<el-table-column :resizable='true' :sortable='false'
 						prop="shouji"
 					label="手机">
 						<template slot-scope="scope">
@@ -109,8 +116,7 @@
 					</el-table-column>
 					<el-table-column :resizable='true' :sortable='false' prop="ispay" label="是否支付">
 						<template slot-scope="scope">
-							<span style="margin-right:10px">{{scope.row.ispay=='已支付'?'已支付':'未支付'}}</span>
-							<el-button v-if="scope.row.ispay!='已支付' && isAuth('xuankexinxi','支付') " type="text" size="small" @click="payHandler(scope.row)">支付</el-button>
+							<span style="margin-right:10px">{{scope.row.ispay==""?"未支付":scope.row.ispay}}</span>
 						</template>
 					</el-table-column>
 					<el-table-column width="300" label="操作">
@@ -143,7 +149,7 @@
 				></el-pagination>
 			<!-- </div> -->
 		</template>
-		
+
 		<!-- 添加/修改页面  将父组件的search方法传递给子组件-->
 		<add-or-update v-if="addOrUpdateFlag" :parent="this" ref="addOrUpdate"></add-or-update>
 
@@ -506,17 +512,17 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-	
+
 	.center-form-pv {
 	  .el-date-editor.el-input {
 	    width: auto;
 	  }
 	}
-	
+
 	.el-input {
 	  width: auto;
 	}
-	
+
 	// form
 	.center-form-pv .el-input /deep/ .el-input__inner {
 				border: 1px solid #efefef;
@@ -530,7 +536,7 @@ export default {
 				font-size: 14px;
 				height: 42px;
 			}
-	
+
 	.center-form-pv .el-select /deep/ .el-input__inner {
 				border: 0;
 				border-radius: 4px;
@@ -543,7 +549,7 @@ export default {
 				font-size: 14px;
 				height: 42px;
 			}
-	
+
 	.center-form-pv .el-date-editor /deep/ .el-input__inner {
 				border: 0;
 				border-radius: 4px;
@@ -556,18 +562,18 @@ export default {
 				font-size: 14px;
 				height: 42px;
 			}
-	
+
 	// table
 	.el-table /deep/ .el-table__header-wrapper thead {
 				color: #999;
 				font-weight: 500;
 				width: 100%;
 			}
-	
+
 	.el-table /deep/ .el-table__header-wrapper thead tr {
 				background: #fff;
 			}
-	
+
 	.el-table /deep/ .el-table__header-wrapper thead tr th {
 				padding: 8px 10px;
 				color: #fff;
@@ -592,7 +598,7 @@ export default {
 				text-overflow: ellipsis;
 			}
 
-	
+
 	.el-table /deep/ .el-table__body-wrapper tbody {
 				border: 0;
 				width: 100%;
@@ -602,7 +608,7 @@ export default {
 				border: 0;
 				background: none;
 			}
-	
+
 	.el-table /deep/ .el-table__body-wrapper tbody tr td {
 				padding: 12px 0;
 				color: #666;
@@ -612,11 +618,11 @@ export default {
 				border-style: solid;
 				text-align: left;
 			}
-	
+
 		.el-table /deep/ .el-table__body-wrapper tbody tr.el-table__row--striped td {
 		background: #fafafa;
 	}
-		
+
 	.el-table /deep/ .el-table__body-wrapper tbody tr:hover td {
 				padding: 12px 0;
 				color: #333;
@@ -626,7 +632,7 @@ export default {
 				border-style: solid;
 				text-align: left;
 			}
-	
+
 	.el-table /deep/ .el-table__body-wrapper tbody tr td {
 				padding: 12px 0;
 				color: #666;
@@ -645,7 +651,7 @@ export default {
 				line-height: 24px;
 				text-overflow: ellipsis;
 			}
-	
+
 	// pagination
 	.main-content .el-pagination /deep/ .el-pagination__total {
 				margin: 0 10px 0 0;
@@ -657,7 +663,7 @@ export default {
 				line-height: 28px;
 				height: 28px;
 			}
-	
+
 	.main-content .el-pagination /deep/ .btn-prev {
 				border: none;
 				border-radius: 2px;
@@ -672,7 +678,7 @@ export default {
 				min-width: 35px;
 				height: 28px;
 			}
-	
+
 	.main-content .el-pagination /deep/ .btn-next {
 				border: none;
 				border-radius: 2px;
@@ -687,7 +693,7 @@ export default {
 				min-width: 35px;
 				height: 28px;
 			}
-	
+
 	.main-content .el-pagination /deep/ .btn-prev:disabled {
 				border: none;
 				cursor: not-allowed;
@@ -702,7 +708,7 @@ export default {
 				line-height: 28px;
 				height: 28px;
 			}
-	
+
 	.main-content .el-pagination /deep/ .btn-next:disabled {
 				border: none;
 				cursor: not-allowed;
@@ -740,7 +746,7 @@ export default {
 				min-width: 30px;
 				height: 28px;
 			}
-	
+
 	.main-content .el-pagination /deep/ .el-pager .number:hover {
 				cursor: pointer;
 				padding: 0 4px;
@@ -756,7 +762,7 @@ export default {
 				min-width: 30px;
 				height: 28px;
 			}
-	
+
 	.main-content .el-pagination /deep/ .el-pager .number.active {
 				cursor: default;
 				padding: 0 4px;
@@ -772,7 +778,7 @@ export default {
 				min-width: 30px;
 				height: 28px;
 			}
-	
+
 	.main-content .el-pagination /deep/ .el-pagination__sizes {
 				display: inline-block;
 				vertical-align: top;
@@ -780,13 +786,13 @@ export default {
 				line-height: 28px;
 				height: 28px;
 			}
-	
+
 	.main-content .el-pagination /deep/ .el-pagination__sizes .el-input {
 				margin: 0 5px;
 				width: 100px;
 				position: relative;
 			}
-	
+
 	.main-content .el-pagination /deep/ .el-pagination__sizes .el-input .el-input__inner {
 				border: 1px solid #DCDFE6;
 				cursor: pointer;
@@ -802,14 +808,14 @@ export default {
 				text-align: center;
 				height: 28px;
 			}
-	
+
 	.main-content .el-pagination /deep/ .el-pagination__sizes .el-input span.el-input__suffix {
 				top: 0;
 				position: absolute;
 				right: 0;
 				height: 100%;
 			}
-	
+
 	.main-content .el-pagination /deep/ .el-pagination__sizes .el-input .el-input__suffix .el-select__caret {
 				cursor: pointer;
 				color: #C0C4CC;
@@ -818,7 +824,7 @@ export default {
 				line-height: 28px;
 				text-align: center;
 			}
-	
+
 	.main-content .el-pagination /deep/ .el-pagination__jump {
 				margin: 0 0 0 24px;
 				color: #333;
@@ -828,7 +834,7 @@ export default {
 				line-height: 28px;
 				height: 28px;
 			}
-	
+
 	.main-content .el-pagination /deep/ .el-pagination__jump .el-input {
 				border-radius: 3px;
 				padding: 0 2px;
@@ -841,7 +847,7 @@ export default {
 				text-align: center;
 				height: 28px;
 			}
-	
+
 	.main-content .el-pagination /deep/ .el-pagination__jump .el-input .el-input__inner {
 				border: 1px solid #DCDFE6;
 				cursor: pointer;

@@ -39,11 +39,11 @@
 					<el-date-picker
 						format="yyyy 年 MM 月 dd 日"
 						value-format="yyyy-MM-dd"
-						v-model="ruleForm.shangkeshijian" 
+						v-model="ruleForm.shangkeshijian"
 						type="date"
 						:readonly="ro.shangkeshijian"
 						placeholder="上课时间"
-					></el-date-picker> 
+					></el-date-picker>
 				</el-form-item>
 				<el-form-item :style='{"margin":"0 0 20px 0"}' class="input" v-else-if="ruleForm.shangkeshijian" label="上课时间" prop="shangkeshijian">
 					<el-input v-model="ruleForm.shangkeshijian" placeholder="上课时间" readonly></el-input>
@@ -64,9 +64,22 @@
 						</el-option>
 					</el-select>
 				</el-form-item>
-				<el-form-item :style='{"margin":"0 0 20px 0"}' class="input" v-else-if="ruleForm.gonghao" label="工号" prop="gonghao">
+				<el-form-item :style='{"margin":"0 0 20px 0"}' class="input" v-else-if="ruleForm.curriculumlevel" label="工号" prop="gonghao">
 					<el-input v-model="ruleForm.gonghao" placeholder="工号" readonly></el-input>
 				</el-form-item>
+                <el-form-item :style='{"margin":"0 0 20px 0"}' class="select" v-if="type!='info'" label="课程层级" prop="curriculumlevel">
+                    <el-select :disabled="ro.curriculumlevel" v-model="ruleForm.curriculumlevel" placeholder="请选择课程层级">
+                        <el-option
+                                v-for="item in options"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item :style='{"margin":"0 0 20px 0"}' class="input" v-else-if="ruleForm.curriculumlevel" label="课程层级" prop="curriculumlevel">
+                    <el-input v-model="ruleForm.curriculumlevel" placeholder="课程层级" readonly></el-input>
+                </el-form-item>
 				<el-form-item :style='{"margin":"0 0 20px 0"}' class="input" v-if="type!='info'"  label="教练姓名" prop="jiaolianxingming">
 					<el-input v-model="ruleForm.jiaolianxingming" placeholder="教练姓名" clearable  :readonly="ro.jiaolianxingming"></el-input>
 				</el-form-item>
@@ -76,7 +89,7 @@
 				<el-form-item :style='{"margin":"0 0 20px 0"}' class="date" v-if="type!='info'" label="发布时间" prop="fabushijian">
 					<el-date-picker
 						value-format="yyyy-MM-dd HH:mm:ss"
-						v-model="ruleForm.fabushijian" 
+						v-model="ruleForm.fabushijian"
 						type="datetime"
 						:readonly="ro.fabushijian"
 						placeholder="发布时间"
@@ -87,10 +100,10 @@
 				</el-form-item>
 			</template>
 				<el-form-item :style='{"margin":"0 0 20px 0"}' v-if="type!='info'"  label="课程介绍" prop="kechengjieshao">
-					<editor 
+					<editor
 						style="min-width: 200px; max-width: 600px;"
-						v-model="ruleForm.kechengjieshao" 
-						class="editor" 
+						v-model="ruleForm.kechengjieshao"
+						class="editor"
 						action="file/upload">
 					</editor>
 				</el-form-item>
@@ -103,7 +116,7 @@
 				<el-button :style='{"border":"0px solid #ccc","cursor":"pointer","padding":"0 30px","margin":"0","outline":"none","color":"#fff","borderRadius":"4px","background":"radial-gradient(circle, rgba(137,195,255,1) 0%, rgba(64,158,255,1) 100%)","width":"auto","lineHeight":"40px","fontSize":"14px","height":"40px"}' v-if="type=='info'" class="btn-close" @click="back()">返回</el-button>
 			</el-form-item>
 		</el-form>
-    
+
 
   </div>
 </template>
@@ -179,8 +192,17 @@ export default {
 		return {
 			id: '',
 			type: '',
-			
-			
+            options: [{
+                value: '1',
+                label: '普通课程'
+            }, {
+                value: '2',
+                label: '半年卡课程'
+            }, {
+                value: '3',
+                label: '年卡课程'
+            }],
+            value: '',
 			ro:{
 				kechengmingcheng : false,
 				kechengleixing : false,
@@ -188,12 +210,13 @@ export default {
 				shangkeshijian : false,
 				jiage : false,
 				gonghao : false,
+                curriculumlevel : false,
 				jiaolianxingming : false,
 				fabushijian : false,
 				kechengjieshao : false,
 			},
-			
-			
+
+
 			ruleForm: {
 				kechengmingcheng: '',
 				kechengleixing: '',
@@ -201,13 +224,14 @@ export default {
 				shangkeshijian: '',
 				jiage: '',
 				gonghao: '',
+                curriculumlevel: '',
 				jiaolianxingming: '',
 				fabushijian: '',
 				kechengjieshao: '',
 			},
-		
+
 			gonghaoOptions: [],
-			
+
 			rules: {
 				kechengmingcheng: [
 					{ required: true, message: '课程名称不能为空', trigger: 'blur' },
@@ -223,9 +247,12 @@ export default {
 					{ required: true, message: '价格不能为空', trigger: 'blur' },
 					{ validator: validateIntNumber, trigger: 'blur' },
 				],
-				gonghao: [
-					{ required: true, message: '工号不能为空', trigger: 'blur' },
+                curriculumlevel: [
+					{ required: true, message: '课程层级不能为空', trigger: 'blur' },
 				],
+                gonghao: [
+                    { required: true, message: '工号不能为空', trigger: 'blur' },
+                ],
 				jiaolianxingming: [
 				],
 				fabushijian: [
@@ -245,7 +272,7 @@ export default {
 		this.ruleForm.fabushijian = this.getCurDateTime()
 	},
 	methods: {
-		
+
 		// 下载
 		download(file){
 			window.open(`${file}`)
@@ -294,6 +321,11 @@ export default {
 							this.ro.gonghao = true;
 							continue;
 						}
+						if(o=='curriculumlevel'){
+							this.ruleForm.curriculumlevel = obj[o];
+							this.ro.curriculumlevel = true;
+							continue;
+						}
 						if(o=='jiaolianxingming'){
 							this.ruleForm.jiaolianxingming = obj[o];
 							this.ro.jiaolianxingming = true;
@@ -310,7 +342,7 @@ export default {
 							continue;
 						}
 				}
-				
+
 
 
 
@@ -321,15 +353,15 @@ export default {
 
 
 			}
-			
-			
+
+
 			// 获取用户信息
 			this.$http({
 				url: `${this.$storage.get('sessionTable')}/session`,
 				method: "get"
 			}).then(({ data }) => {
 				if (data && data.code === 0) {
-					
+
 					var json = data.data;
 					if(this.$storage.get("role")!="管理员") {
 						this.ro.jiaolianxingming = true;
@@ -338,7 +370,7 @@ export default {
 					this.$message.error(data.msg);
 				}
 			});
-			
+
             this.$http({
 				url: `option/jianshenjiaolian/gonghao`,
 				method: "get"
@@ -349,7 +381,7 @@ export default {
 					this.$message.error(data.msg);
 				}
             });
-			
+
 		},
 			// 下二随
 			gonghaoChange () {
@@ -445,20 +477,20 @@ var objcross = this.$storage.getObj('crossObj');
 		 if(crossrefid && crossuserid) {
 			 this.ruleForm.crossuserid = crossuserid;
 			 this.ruleForm.crossrefid = crossrefid;
-			let params = { 
-				page: 1, 
-				limit: 10, 
+			let params = {
+				page: 1,
+				limit: 10,
 				crossuserid:this.ruleForm.crossuserid,
 				crossrefid:this.ruleForm.crossrefid,
-			} 
-			this.$http({ 
-				url: "jianshenkecheng/page", 
-				method: "get", 
-				params: params 
-			}).then(({ 
-				data 
-			}) => { 
-				if (data && data.code === 0) { 
+			}
+			this.$http({
+				url: "jianshenkecheng/page",
+				method: "get",
+				params: params
+			}).then(({
+				data
+			}) => {
+				if (data && data.code === 0) {
 				       if(data.data.total>=crossoptnum) {
 					     this.$message.error(this.$storage.get('tips'));
 					       return false;
@@ -487,8 +519,8 @@ var objcross = this.$storage.getObj('crossObj');
 					 });
 
 				       }
-				} else { 
-				} 
+				} else {
+				}
 			});
 		 } else {
 			 this.$http({
@@ -539,15 +571,15 @@ var objcross = this.$storage.getObj('crossObj');
 		width: 100%;
 		height: 500px;
 	}
-	
+
 	.search-box {
 		position: absolute;
 	}
-	
+
 	.el-date-editor.el-input {
 		width: auto;
 	}
-	
+
 	.add-update-preview .el-form-item /deep/ .el-form-item__label {
 	  	  padding: 0 10px 0 0;
 	  	  text-shadow: 0 1px 10px #fff;
@@ -558,11 +590,11 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  line-height: 40px;
 	  	  text-align: right;
 	  	}
-	
+
 	.add-update-preview .el-form-item /deep/ .el-form-item__content {
 	  margin-left: 80px;
 	}
-	
+
 	.add-update-preview .el-input /deep/ .el-input__inner {
 	  	  border-radius: 0px;
 	  	  padding: 0 12px;
@@ -577,7 +609,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  border-style: solid;
 	  	  height: 40px;
 	  	}
-	
+
 	.add-update-preview .el-select /deep/ .el-input__inner {
 	  	  border-radius: 0px;
 	  	  padding: 0 10px;
@@ -591,7 +623,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  border-style: solid;
 	  	  height: 40px;
 	  	}
-	
+
 	.add-update-preview .el-date-editor /deep/ .el-input__inner {
 	  	  border: 0px solid #333;
 	  	  border-radius: 0px;
@@ -606,7 +638,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  border-style: solid;
 	  	  height: 40px;
 	  	}
-	
+
 	.add-update-preview /deep/ .el-upload--picture-card {
 		background: transparent;
 		border: 0;
@@ -616,7 +648,7 @@ var objcross = this.$storage.getObj('crossObj');
 		line-height: initial;
 		vertical-align: middle;
 	}
-	
+
 	.add-update-preview /deep/ .upload .upload-img {
 	  	  border: 2px solid #ddd;
 	  	  cursor: pointer;
@@ -628,7 +660,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  text-align: center;
 	  	  height: 100px;
 	  	}
-	
+
 	.add-update-preview /deep/ .el-upload-list .el-upload-list__item {
 	  	  border: 2px solid #ddd;
 	  	  cursor: pointer;
@@ -640,7 +672,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  text-align: center;
 	  	  height: 100px;
 	  	}
-	
+
 	.add-update-preview /deep/ .el-upload .el-icon-plus {
 	  	  border: 2px solid #ddd;
 	  	  cursor: pointer;
@@ -652,7 +684,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  text-align: center;
 	  	  height: 100px;
 	  	}
-	
+
 	.add-update-preview .el-textarea /deep/ .el-textarea__inner {
 	  	  border: 2px solid #ebeaed;
 	  	  border-radius: 4px;

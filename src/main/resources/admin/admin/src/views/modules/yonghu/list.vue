@@ -30,25 +30,25 @@
 
 				</el-row>
 			</el-form>
-			
+
 			<!-- <div> -->
 				<el-table class="tables"
 					:stripe='true'
-					:style='{"border":"1px","padding":"0","borderColor":"#f3b9ac","borderRadius":"0px","borderWidth":"1px 0 0 1px","background":"rgba(255,255,255,.6)","width":"100%","borderStyle":"solid"}' 
+					:style='{"border":"1px","padding":"0","borderColor":"#f3b9ac","borderRadius":"0px","borderWidth":"1px 0 0 1px","background":"rgba(255,255,255,.6)","width":"100%","borderStyle":"solid"}'
 					v-if="isAuth('yonghu','查看')"
 					:data="dataList"
 					v-loading="dataListLoading"
 				@selection-change="selectionChangeHandler">
 					<el-table-column :resizable='true' type="selection" align="center" width="50"></el-table-column>
 					<el-table-column :resizable='true' :sortable='false' label="索引" type="index" width="50" />
-					<el-table-column :resizable='true' :sortable='false'  
+					<el-table-column :resizable='true' :sortable='false'
 						prop="yonghuming"
 					label="用户名">
 						<template slot-scope="scope">
 							{{scope.row.yonghuming}}
 						</template>
 					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false'  
+					<el-table-column :resizable='true' :sortable='false'
 						prop="xingming"
 					label="姓名">
 						<template slot-scope="scope">
@@ -64,37 +64,37 @@
 							<div v-else>无图片</div>
 						</template>
 					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false'  
+					<el-table-column :resizable='true' :sortable='false'
 						prop="xingbie"
 					label="性别">
 						<template slot-scope="scope">
 							{{scope.row.xingbie}}
 						</template>
 					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false'  
+					<el-table-column :resizable='true' :sortable='false'
 						prop="nianling"
 					label="年龄">
 						<template slot-scope="scope">
 							{{scope.row.nianling}}
 						</template>
 					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false'  
+					<el-table-column :resizable='true' :sortable='false'
 						prop="youxiang"
 					label="邮箱">
 						<template slot-scope="scope">
 							{{scope.row.youxiang}}
 						</template>
 					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false'  
+					<el-table-column :resizable='true' :sortable='false'
 						prop="shouji"
 					label="手机">
 						<template slot-scope="scope">
 							{{scope.row.shouji}}
 						</template>
 					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false'  
+					<el-table-column :resizable='true' :sortable='false'
 						prop="vip"
-					label="是否会员">
+					label="会员">
 						<template slot-scope="scope">
 							{{scope.row.vip}}
 						</template>
@@ -127,7 +127,7 @@
 				></el-pagination>
 			<!-- </div> -->
 		</template>
-		
+
 		<!-- 添加/修改页面  将父组件的search方法传递给子组件-->
 		<add-or-update v-if="addOrUpdateFlag" :parent="this" ref="addOrUpdate"></add-or-update>
 
@@ -322,17 +322,17 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-	
+
 	.center-form-pv {
 	  .el-date-editor.el-input {
 	    width: auto;
 	  }
 	}
-	
+
 	.el-input {
 	  width: auto;
 	}
-	
+
 	// form
 	.center-form-pv .el-input /deep/ .el-input__inner {
 				border: 1px solid #efefef;
@@ -346,7 +346,7 @@ export default {
 				font-size: 14px;
 				height: 42px;
 			}
-	
+
 	.center-form-pv .el-select /deep/ .el-input__inner {
 				border: 0;
 				border-radius: 4px;
@@ -359,7 +359,7 @@ export default {
 				font-size: 14px;
 				height: 42px;
 			}
-	
+
 	.center-form-pv .el-date-editor /deep/ .el-input__inner {
 				border: 0;
 				border-radius: 4px;
@@ -372,18 +372,18 @@ export default {
 				font-size: 14px;
 				height: 42px;
 			}
-	
+
 	// table
 	.el-table /deep/ .el-table__header-wrapper thead {
 				color: #999;
 				font-weight: 500;
 				width: 100%;
 			}
-	
+
 	.el-table /deep/ .el-table__header-wrapper thead tr {
 				background: #fff;
 			}
-	
+
 	.el-table /deep/ .el-table__header-wrapper thead tr th {
 				padding: 8px 10px;
 				color: #fff;
@@ -408,7 +408,7 @@ export default {
 				text-overflow: ellipsis;
 			}
 
-	
+
 	.el-table /deep/ .el-table__body-wrapper tbody {
 				border: 0;
 				width: 100%;
@@ -418,7 +418,7 @@ export default {
 				border: 0;
 				background: none;
 			}
-	
+
 	.el-table /deep/ .el-table__body-wrapper tbody tr td {
 				padding: 12px 0;
 				color: #666;
@@ -428,11 +428,11 @@ export default {
 				border-style: solid;
 				text-align: left;
 			}
-	
+
 		.el-table /deep/ .el-table__body-wrapper tbody tr.el-table__row--striped td {
 		background: #fafafa;
 	}
-		
+
 	.el-table /deep/ .el-table__body-wrapper tbody tr:hover td {
 				padding: 12px 0;
 				color: #333;
@@ -442,7 +442,7 @@ export default {
 				border-style: solid;
 				text-align: left;
 			}
-	
+
 	.el-table /deep/ .el-table__body-wrapper tbody tr td {
 				padding: 12px 0;
 				color: #666;
@@ -461,7 +461,7 @@ export default {
 				line-height: 24px;
 				text-overflow: ellipsis;
 			}
-	
+
 	// pagination
 	.main-content .el-pagination /deep/ .el-pagination__total {
 				margin: 0 10px 0 0;
@@ -473,7 +473,7 @@ export default {
 				line-height: 28px;
 				height: 28px;
 			}
-	
+
 	.main-content .el-pagination /deep/ .btn-prev {
 				border: none;
 				border-radius: 2px;
@@ -488,7 +488,7 @@ export default {
 				min-width: 35px;
 				height: 28px;
 			}
-	
+
 	.main-content .el-pagination /deep/ .btn-next {
 				border: none;
 				border-radius: 2px;
@@ -503,7 +503,7 @@ export default {
 				min-width: 35px;
 				height: 28px;
 			}
-	
+
 	.main-content .el-pagination /deep/ .btn-prev:disabled {
 				border: none;
 				cursor: not-allowed;
@@ -518,7 +518,7 @@ export default {
 				line-height: 28px;
 				height: 28px;
 			}
-	
+
 	.main-content .el-pagination /deep/ .btn-next:disabled {
 				border: none;
 				cursor: not-allowed;
@@ -556,7 +556,7 @@ export default {
 				min-width: 30px;
 				height: 28px;
 			}
-	
+
 	.main-content .el-pagination /deep/ .el-pager .number:hover {
 				cursor: pointer;
 				padding: 0 4px;
@@ -572,7 +572,7 @@ export default {
 				min-width: 30px;
 				height: 28px;
 			}
-	
+
 	.main-content .el-pagination /deep/ .el-pager .number.active {
 				cursor: default;
 				padding: 0 4px;
@@ -588,7 +588,7 @@ export default {
 				min-width: 30px;
 				height: 28px;
 			}
-	
+
 	.main-content .el-pagination /deep/ .el-pagination__sizes {
 				display: inline-block;
 				vertical-align: top;
@@ -596,13 +596,13 @@ export default {
 				line-height: 28px;
 				height: 28px;
 			}
-	
+
 	.main-content .el-pagination /deep/ .el-pagination__sizes .el-input {
 				margin: 0 5px;
 				width: 100px;
 				position: relative;
 			}
-	
+
 	.main-content .el-pagination /deep/ .el-pagination__sizes .el-input .el-input__inner {
 				border: 1px solid #DCDFE6;
 				cursor: pointer;
@@ -618,14 +618,14 @@ export default {
 				text-align: center;
 				height: 28px;
 			}
-	
+
 	.main-content .el-pagination /deep/ .el-pagination__sizes .el-input span.el-input__suffix {
 				top: 0;
 				position: absolute;
 				right: 0;
 				height: 100%;
 			}
-	
+
 	.main-content .el-pagination /deep/ .el-pagination__sizes .el-input .el-input__suffix .el-select__caret {
 				cursor: pointer;
 				color: #C0C4CC;
@@ -634,7 +634,7 @@ export default {
 				line-height: 28px;
 				text-align: center;
 			}
-	
+
 	.main-content .el-pagination /deep/ .el-pagination__jump {
 				margin: 0 0 0 24px;
 				color: #333;
@@ -644,7 +644,7 @@ export default {
 				line-height: 28px;
 				height: 28px;
 			}
-	
+
 	.main-content .el-pagination /deep/ .el-pagination__jump .el-input {
 				border-radius: 3px;
 				padding: 0 2px;
@@ -657,7 +657,7 @@ export default {
 				text-align: center;
 				height: 28px;
 			}
-	
+
 	.main-content .el-pagination /deep/ .el-pagination__jump .el-input .el-input__inner {
 				border: 1px solid #DCDFE6;
 				cursor: pointer;

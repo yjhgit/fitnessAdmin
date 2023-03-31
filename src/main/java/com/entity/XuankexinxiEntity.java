@@ -24,8 +24,8 @@ import com.baomidou.mybatisplus.enums.IdType;
 /**
  * 选课信息
  * 数据库通用操作实体类（普通增删改查）
- * @author 
- * @email 
+ * @author
+ * @email
  * @date 2023-03-06 17:36:53
  */
 @TableName("xuankexinxi")
@@ -34,9 +34,9 @@ public class XuankexinxiEntity<T> implements Serializable {
 
 
 	public XuankexinxiEntity() {
-		
+
 	}
-	
+
 	public XuankexinxiEntity(T t) {
 		try {
 			BeanUtils.copyProperties(this, t);
@@ -45,7 +45,7 @@ public class XuankexinxiEntity<T> implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * 主键id
 	 */
@@ -54,84 +54,90 @@ public class XuankexinxiEntity<T> implements Serializable {
 	/**
 	 * 订单编号
 	 */
-					
+
 	private String dingdanbianhao;
-	
+
 	/**
 	 * 课程名称
 	 */
-					
+
 	private String kechengmingcheng;
-	
+
 	/**
 	 * 课程类型
 	 */
-					
+
 	private String kechengleixing;
-	
+
 	/**
 	 * 工号
 	 */
-					
+
 	private String gonghao;
-	
+
 	/**
 	 * 教练姓名
 	 */
-					
+
 	private String jiaolianxingming;
-	
+
 	/**
 	 * 价格
 	 */
-					
+
 	private Integer jiage;
-	
+
 	/**
 	 * 下单时间
 	 */
-				
+
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
-	@DateTimeFormat 		
+	@DateTimeFormat
 	private Date xiadanshijian;
-	
+
 	/**
 	 * 用户名
 	 */
-					
+
 	private String yonghuming;
-	
+
 	/**
 	 * 姓名
 	 */
-					
+
 	private String xingming;
-	
+
 	/**
 	 * 手机
 	 */
-					
+
 	private String shouji;
-	
+
 	/**
 	 * 跨表用户id
 	 */
-					
+
 	private Long crossuserid;
-	
+
 	/**
 	 * 跨表主键id
 	 */
-					
+
 	private Long crossrefid;
-	
+
 	/**
 	 * 是否支付
 	 */
-					
+
 	private String ispay;
-	
-	
+
+	/**
+	 * 课程层级 1普通课程 2半年卡课程 3年卡课程用户id
+	 */
+
+	private Integer curriculumlevel;
+
+
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
 	private Date addtime;
@@ -307,4 +313,11 @@ public class XuankexinxiEntity<T> implements Serializable {
 		return ispay;
 	}
 
+    public Integer getCurriculumlevel() {
+        return curriculumlevel;
+    }
+
+    public void setCurriculumlevel(Integer curriculumlevel) {
+        this.curriculumlevel = curriculumlevel;
+    }
 }

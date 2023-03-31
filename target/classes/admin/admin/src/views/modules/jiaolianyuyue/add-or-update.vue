@@ -21,24 +21,32 @@
 				<el-form-item :style='{"margin":"0 0 20px 0"}' v-else class="input" label="教练姓名" prop="jiaolianxingming">
 					<el-input v-model="ruleForm.jiaolianxingming" placeholder="教练姓名" readonly></el-input>
 				</el-form-item>
-				<el-form-item :style='{"margin":"0 0 20px 0"}' class="input" v-if="type!='info'"  label="场地名称" prop="changdimingcheng">
-					<el-input v-model="ruleForm.changdimingcheng" placeholder="场地名称" clearable  :readonly="ro.changdimingcheng"></el-input>
-				</el-form-item>
-				<el-form-item :style='{"margin":"0 0 20px 0"}' v-else class="input" label="场地名称" prop="changdimingcheng">
-					<el-input v-model="ruleForm.changdimingcheng" placeholder="场地名称" readonly></el-input>
-				</el-form-item>
 				<el-form-item :style='{"margin":"0 0 20px 0"}' class="date" v-if="type!='info'" label="预约时间" prop="yuyueshijian">
 					<el-date-picker
-						value-format="yyyy-MM-dd HH:mm:ss"
+						value-format="yyyy-MM-dd"
 						v-model="ruleForm.yuyueshijian"
-						type="datetime"
+						type="date"
+                        @change="selectTime"
 						:readonly="ro.yuyueshijian"
 						placeholder="预约时间"
+                        :picker-options="pickerOptions"
 					></el-date-picker>
 				</el-form-item>
 				<el-form-item :style='{"margin":"0 0 20px 0"}' class="input" v-else-if="ruleForm.yuyueshijian" label="预约时间" prop="yuyueshijian">
 					<el-input v-model="ruleForm.yuyueshijian" placeholder="预约时间" readonly></el-input>
 				</el-form-item>
+                <el-form-item v-show="ruleForm.yuyueshijian" :style='{"margin":"0 0 20px 0"}' v-else class="input"  prop="timeFrame">
+                    <el-radio v-model="ruleForm.timeFrame" label="9:00">上午 9:00</el-radio>
+                    <el-radio v-model="ruleForm.timeFrame" label="14:00">下午 14:00</el-radio>
+                </el-form-item>
+                <el-form-item v-show="ruleForm.yuyueshijian" :style='{"margin":"0 0 20px 0"}' v-if="type!='info'" class="input"  prop="timeFrame">
+                    <el-radio v-model="ruleForm.timeFrame" label="9:00">上午 9:00</el-radio>
+                    <el-radio v-model="ruleForm.timeFrame" label="14:00">下午 14:00</el-radio>
+                </el-form-item>
+                <el-form-item :style='{"margin":"0 0 20px 0"}' v-else class="input"  prop="timeFrame">
+                    <el-radio v-model="ruleForm.timeFrame" label="9:00" :readonly="ro.yonghuming">上午 9:00</el-radio>
+                    <el-radio v-model="ruleForm.timeFrame" label="14:00" :readonly="ro.yonghuming">下午 14:00</el-radio>
+                </el-form-item>
 				<el-form-item :style='{"margin":"0 0 20px 0"}' class="input" v-if="type!='info'"  label="用户名" prop="yonghuming">
 					<el-input v-model="ruleForm.yonghuming" placeholder="用户名" clearable  :readonly="ro.yonghuming"></el-input>
 				</el-form-item>
@@ -150,6 +158,11 @@ export default {
 			}
 		};
 		return {
+            pickerOptions: {
+                disabledDate(time) {
+                    return time.getTime() < Date.now();
+                }
+            },
 			id: '',
 			type: '',
 
@@ -157,7 +170,7 @@ export default {
 			ro:{
 				gonghao : false,
 				jiaolianxingming : false,
-				changdimingcheng : false,
+                timeFrame : false,
 				yuyueshuoming : false,
 				yuyueshijian : false,
 				yonghuming : false,
@@ -169,7 +182,7 @@ export default {
 			ruleForm: {
 				gonghao: '',
 				jiaolianxingming: '',
-				changdimingcheng: '',
+                timeFrame: '',
 				yuyueshuoming: '',
 				yuyueshijian: '',
 				yonghuming: '',
@@ -183,8 +196,8 @@ export default {
 				],
 				jiaolianxingming: [
 				],
-				changdimingcheng: [
-					{ required: true, message: '场地名称不能为空', trigger: 'blur' },
+                timeFrame: [
+					{ required: true, message: '预约时段不能为空', trigger: 'blur' },
 				],
 				yuyueshuoming: [
 					{ required: true, message: '预约说明不能为空', trigger: 'blur' },
@@ -216,6 +229,9 @@ export default {
 		download(file){
 			window.open(`${file}`)
 		},
+        selectTime(val){
+            this.ruleForm.timeFrame = ""
+        },
 		// 初始化
 		init(id,type) {
 			if (id) {
@@ -240,9 +256,9 @@ export default {
 							this.ro.jiaolianxingming = true;
 							continue;
 						}
-						if(o=='changdimingcheng'){
-							this.ruleForm.changdimingcheng = obj[o];
-							this.ro.changdimingcheng = true;
+						if(o=='timeFrame'){
+							this.ruleForm.timeFrame = obj[o];
+							this.ro.timeFrame = true;
 							continue;
 						}
 						if(o=='yuyueshuoming'){
