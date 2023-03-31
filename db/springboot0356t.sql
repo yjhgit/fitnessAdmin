@@ -80,40 +80,7 @@ INSERT INTO `config` VALUES (1, 'picture1', 'upload/picture1.jpg');
 INSERT INTO `config` VALUES (2, 'picture2', 'upload/picture2.jpg');
 INSERT INTO `config` VALUES (3, 'picture3', 'upload/picture3.jpg');
 
--- ----------------------------
--- Table structure for dakaxinxi
--- ----------------------------
-DROP TABLE IF EXISTS `dakaxinxi`;
-CREATE TABLE `dakaxinxi`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
-  `kechengmingcheng` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '课程名称',
-  `gonghao` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '工号',
-  `jiaolianxingming` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '教练姓名',
-  `dakaneirong` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '打卡内容',
-  `dakashijian` datetime(0) NULL DEFAULT NULL COMMENT '打卡时间',
-  `xingming` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '姓名',
-  `yonghuming` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户名',
-  `longitude` float NULL DEFAULT NULL COMMENT '经度',
-  `latitude` float NULL DEFAULT NULL COMMENT '纬度',
-  `fulladdress` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '地址',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1678095724599 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '打卡信息' ROW_FORMAT = Dynamic;
 
--- ----------------------------
--- Records of dakaxinxi
--- ----------------------------
-INSERT INTO `dakaxinxi` VALUES (91, '2023-03-06 17:37:20', '课程名称1', '工号1', '教练姓名1', '打卡内容1', '2023-03-06 17:37:20', '姓名1', '用户名1', 1, 1, '宇宙银河系地球1号');
-INSERT INTO `dakaxinxi` VALUES (92, '2023-03-06 17:37:20', '课程名称2', '工号2', '教练姓名2', '打卡内容2', '2023-03-06 17:37:20', '姓名2', '用户名2', 2, 2, '宇宙银河系地球2号');
-INSERT INTO `dakaxinxi` VALUES (93, '2023-03-06 17:37:20', '课程名称3', '工号3', '教练姓名3', '打卡内容3', '2023-03-06 17:37:20', '姓名3', '用户名3', 3, 3, '宇宙银河系地球3号');
-INSERT INTO `dakaxinxi` VALUES (94, '2023-03-06 17:37:20', '课程名称4', '工号4', '教练姓名4', '打卡内容4', '2023-03-06 17:37:20', '姓名4', '用户名4', 4, 4, '宇宙银河系地球4号');
-INSERT INTO `dakaxinxi` VALUES (95, '2023-03-06 17:37:20', '课程名称5', '工号5', '教练姓名5', '打卡内容5', '2023-03-06 17:37:20', '姓名5', '用户名5', 5, 5, '宇宙银河系地球5号');
-INSERT INTO `dakaxinxi` VALUES (96, '2023-03-06 17:37:20', '课程名称6', '工号6', '教练姓名6', '打卡内容6', '2023-03-06 17:37:20', '姓名6', '用户名6', 6, 6, '宇宙银河系地球6号');
-INSERT INTO `dakaxinxi` VALUES (97, '2023-03-06 17:37:20', '课程名称7', '工号7', '教练姓名7', '打卡内容7', '2023-03-06 17:37:20', '姓名7', '用户名7', 7, 7, '宇宙银河系地球7号');
-INSERT INTO `dakaxinxi` VALUES (98, '2023-03-06 17:37:20', '课程名称8', '工号8', '教练姓名8', '打卡内容8', '2023-03-06 17:37:20', '姓名8', '用户名8', 8, 8, '宇宙银河系地球8号');
-INSERT INTO `dakaxinxi` VALUES (1678095724598, '2023-03-06 17:42:03', '课程名称8', '1', '教练姓名8', '12121', '2023-03-06 17:41:25', '姓名8', '1', 116.378, 39.9548, '北京市西城区德胜街道德胜国际中心');
-
--- ----------------------------
 -- Table structure for diaokeshenqing
 -- ----------------------------
 DROP TABLE IF EXISTS `diaokeshenqing`;

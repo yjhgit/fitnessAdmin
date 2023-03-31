@@ -40,9 +40,6 @@ import xuankexinxiList from '../pages/xuankexinxi/list'
 import xuankexinxiDetail from '../pages/xuankexinxi/detail'
 import xuankexinxiAdd from '../pages/xuankexinxi/add'
 import xuankexinxiListShow from '../pages/xuankexinxi/listshow'
-import dakaxinxiList from '../pages/dakaxinxi/list'
-import dakaxinxiDetail from '../pages/dakaxinxi/detail'
-import dakaxinxiAdd from '../pages/dakaxinxi/add'
 import jiaolianyuyueList from '../pages/jiaolianyuyue/list'
 import jiaolianyuyueDetail from '../pages/jiaolianyuyue/detail'
 import jiaolianyuyueAdd from '../pages/jiaolianyuyue/add'
@@ -219,18 +216,6 @@ export default new VueRouter({
 				{
 					path: 'xuankexinxiListShow',
 					component: xuankexinxiListShow
-				},
-				{
-					path: 'dakaxinxi',
-					component: dakaxinxiList
-				},
-				{
-					path: 'dakaxinxiDetail',
-					component: dakaxinxiDetail
-				},
-				{
-					path: 'dakaxinxiAdd',
-					component: dakaxinxiAdd
 				},
 				{
 					path: 'jiaolianyuyue',

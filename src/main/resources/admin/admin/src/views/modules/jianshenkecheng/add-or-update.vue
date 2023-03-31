@@ -64,11 +64,11 @@
 						</el-option>
 					</el-select>
 				</el-form-item>
-				<el-form-item :style='{"margin":"0 0 20px 0"}' class="input" v-else-if="ruleForm.curriculumlevel" label="工号" prop="gonghao">
+				<el-form-item :style='{"margin":"0 0 20px 0"}' class="input" v-else-if="ruleForm.gonghao" label="工号" prop="gonghao">
 					<el-input v-model="ruleForm.gonghao" placeholder="工号" readonly></el-input>
 				</el-form-item>
                 <el-form-item :style='{"margin":"0 0 20px 0"}' class="select" v-if="type!='info'" label="课程层级" prop="curriculumlevel">
-                    <el-select :disabled="ro.curriculumlevel" v-model="ruleForm.curriculumlevel" placeholder="请选择课程层级">
+                    <el-select  v-model="ruleForm.curriculumlevel" placeholder="请选择课程层级">
                         <el-option
                                 v-for="item in options"
                                 :key="item.value"
@@ -78,7 +78,7 @@
                     </el-select>
                 </el-form-item>
                 <el-form-item :style='{"margin":"0 0 20px 0"}' class="input" v-else-if="ruleForm.curriculumlevel" label="课程层级" prop="curriculumlevel">
-                    <el-input v-model="ruleForm.curriculumlevel" placeholder="课程层级" readonly></el-input>
+                    <el-input v-model="ruleForm.curriculumlevel == 1?'13':'123'" placeholder="课程层级" readonly></el-input>
                 </el-form-item>
 				<el-form-item :style='{"margin":"0 0 20px 0"}' class="input" v-if="type!='info'"  label="教练姓名" prop="jiaolianxingming">
 					<el-input v-model="ruleForm.jiaolianxingming" placeholder="教练姓名" clearable  :readonly="ro.jiaolianxingming"></el-input>
@@ -193,13 +193,13 @@ export default {
 			id: '',
 			type: '',
             options: [{
-                value: '1',
+                value: 1,
                 label: '普通课程'
             }, {
-                value: '2',
+                value: 2,
                 label: '半年卡课程'
             }, {
-                value: '3',
+                value: 3,
                 label: '年卡课程'
             }],
             value: '',
@@ -407,6 +407,7 @@ export default {
       }).then(({ data }) => {
         if (data && data.code === 0) {
         this.ruleForm = data.data;
+        // this.ruleForm.curriculumlevel = data.data.curriculumlevel==1?"普通课程":data.data.curriculumlevel == 2 ?"半年卡课程":"年卡课程";
         //解决前台上传图片后台不显示的问题
         let reg=new RegExp('../../../upload','g')//g代表全部
         this.ruleForm.kechengjieshao = this.ruleForm.kechengjieshao.replace(reg,'../../../lxgym/upload');
@@ -419,29 +420,14 @@ export default {
 
     // 提交
     onSubmit() {
-
-
-
-
-
-
+    /*if(this.ruleForm.curriculumlevel != 1 && this.ruleForm.curriculumlevel != 2 && this.ruleForm.curriculumlevel != 3){
+        this.ruleForm.curriculumlevel = this.ruleForm.curriculumlevel=="普通课程"?1:this.ruleForm.curriculumlevel == "半年卡课程"?2:3;
+    }*/
 	if(this.ruleForm.tupian!=null) {
 		this.ruleForm.tupian = this.ruleForm.tupian.replace(new RegExp(this.$base.url,"g"),"");
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-var objcross = this.$storage.getObj('crossObj');
+    var objcross = this.$storage.getObj('crossObj');
 
       //更新跨表属性
        var crossuserid;

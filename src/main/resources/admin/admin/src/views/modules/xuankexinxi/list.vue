@@ -122,7 +122,6 @@
 					<el-table-column width="300" label="操作">
 						<template slot-scope="scope">
 							<el-button :style='{"border":"1px solid #999","cursor":"pointer","padding":"0 16px","margin":"3px 6px 3px 0","outline":"none","color":"#333","borderRadius":"4px","background":"none","width":"auto","fontSize":"14px","height":"32px"}' v-if=" isAuth('xuankexinxi','查看')" type="success" size="mini" @click="addOrUpdateHandler(scope.row.id,'info')">详情</el-button>
-							<el-button :style='{"border":"1px solid #999","cursor":"pointer","padding":"0 16px","margin":"3px 6px 3px 0","outline":"none","color":"#333","borderRadius":"4px","background":"none","width":"auto","fontSize":"14px","height":"32px"}' v-if="isAuth('xuankexinxi','打卡')" type="success" size="mini" @click="dakaxinxiCrossAddOrUpdateHandler(scope.row,'cross','','','')">打卡</el-button>
 							<el-button :style='{"border":"1px solid #7a89d3","cursor":"pointer","padding":"0 16px","margin":"3px 6px 3px 0","outline":"none","color":"#7a89d3","borderRadius":"4px","background":"none","width":"auto","fontSize":"14px","height":"32px"}' v-if=" isAuth('xuankexinxi','修改')" type="primary" size="mini" @click="addOrUpdateHandler(scope.row.id)">修改</el-button>
 
 
@@ -153,7 +152,7 @@
 		<!-- 添加/修改页面  将父组件的search方法传递给子组件-->
 		<add-or-update v-if="addOrUpdateFlag" :parent="this" ref="addOrUpdate"></add-or-update>
 
-		<dakaxinxi-cross-add-or-update v-if="dakaxinxiCrossAddOrUpdateFlag" :parent="this" ref="dakaxinxiCrossaddOrUpdate"></dakaxinxi-cross-add-or-update>
+		<dakaxinxi-cross-add-or-update v-if="dakaxinxiCrossAddOrUpdateFlag" :parent="this" ></dakaxinxi-cross-add-or-update>
 
 
 
@@ -183,7 +182,6 @@
 import * as echarts from 'echarts'
 import axios from 'axios'
 import AddOrUpdate from "./add-or-update";
-import dakaxinxiCrossAddOrUpdate from "../dakaxinxi/add-or-update";
 export default {
   data() {
     return {
@@ -226,7 +224,6 @@ export default {
   },
   components: {
     AddOrUpdate,
-    dakaxinxiCrossAddOrUpdate,
   },
   methods: {
 

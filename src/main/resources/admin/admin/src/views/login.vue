@@ -17,7 +17,6 @@
         </div>
         <div :style='{"width":"auto","margin":"40px 0 0 55px","alignItems":"left","flexWrap":"wrap","justifyContent":"center","display":"flex"}'>
           <el-button v-if="loginType==1" :style='{"border":"0","cursor":"pointer","padding":"0 20px","margin":"0 5px","outline":"none","color":"#fff","borderRadius":"0px","background":"#308ff0","width":"auto","fontSize":"14px","height":"40px"}' type="primary" @click="login()" class="loginInBt">登录</el-button>
-          <el-button :style='{"border":"1px solid #308ff0","cursor":"pointer","padding":"0 10px","margin":"0 5px","outline":"none","color":"#308ff0","borderRadius":"0px","background":"#fff","width":"auto","fontSize":"14px","height":"40px"}' type="primary" @click="register('jianshenjiaolian')" class="register">注册健身教练</el-button>
         </div>
       </el-form>
 
@@ -180,7 +179,7 @@ export default {
   background-position: center center;
   background-size: cover;
       background: url(http://codegen.caihongy.cn/20221125/17badb9f90a943a5b5d40f9f44b9aa81.jpg);
-        
+
   .list-item /deep/ .el-input .el-input__inner {
 		border-radius: 0px;
 		padding: 0 20px;
@@ -192,7 +191,7 @@ export default {
 		border-style: solid;
 		height: 44px;
 	  }
-  
+
   .list-code /deep/ .el-input .el-input__inner {
   	  	border-radius: 0px;
   	  	padding: 0 20px;

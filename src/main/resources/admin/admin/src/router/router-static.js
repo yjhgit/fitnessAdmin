@@ -12,7 +12,6 @@ import pay from '@/views/pay'
 import register from '@/views/register'
 import center from '@/views/center'
     import news from '@/views/modules/news/list'
-    import dakaxinxi from '@/views/modules/dakaxinxi/list'
     import jianshenkecheng from '@/views/modules/jianshenkecheng/list'
     import discussjianshenqicai from '@/views/modules/discussjianshenqicai/list'
     import jianshenqicai from '@/views/modules/jianshenqicai/list'
@@ -66,11 +65,6 @@ const routes = [{
 	path: '/news',
         name: '健身资讯',
         component: news
-      }
-      ,{
-	path: '/dakaxinxi',
-        name: '打卡信息',
-        component: dakaxinxi
       }
       ,{
 	path: '/jianshenkecheng',

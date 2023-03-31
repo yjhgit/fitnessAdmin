@@ -173,13 +173,13 @@ export default {
 			id: '',
 			type: '',
             options: [{
-                value: '1',
+                value: 1,
                 label: '普通课程'
             }, {
-                value: '2',
+                value: 2,
                 label: '半年卡课程'
             }, {
-                value: '3',
+                value: 3,
                 label: '年卡课程'
             }],
             value: '',
