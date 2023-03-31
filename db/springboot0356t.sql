@@ -11,7 +11,7 @@
  Target Server Version : 50740
  File Encoding         : 65001
 
- Date: 30/03/2023 19:21:08
+ Date: 31/03/2023 16:10:25
 */
 
 SET NAMES utf8mb4;
@@ -60,7 +60,7 @@ CREATE TABLE `cart`  (
   `price` float NULL DEFAULT NULL COMMENT '单价',
   `discountprice` float NULL DEFAULT NULL COMMENT '会员价',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '购物车表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1680244310450 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '购物车表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for config
@@ -80,7 +80,7 @@ INSERT INTO `config` VALUES (1, 'picture1', 'upload/picture1.jpg');
 INSERT INTO `config` VALUES (2, 'picture2', 'upload/picture2.jpg');
 INSERT INTO `config` VALUES (3, 'picture3', 'upload/picture3.jpg');
 
-
+-- ----------------------------
 -- Table structure for diaokeshenqing
 -- ----------------------------
 DROP TABLE IF EXISTS `diaokeshenqing`;
@@ -223,13 +223,21 @@ CREATE TABLE `jianshenkecheng`  (
   `jiaolianxingming` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '教练姓名',
   `fabushijian` datetime(0) NULL DEFAULT NULL COMMENT '发布时间',
   `kechengjieshao` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '课程介绍',
+  `curriculumlevel` int(1) NULL DEFAULT NULL COMMENT '课程层级 1普通课程 2半年卡课程 3年卡课程',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 79 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '健身课程' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of jianshenkecheng
 -- ----------------------------
-INSERT INTO `jianshenkecheng` VALUES (71, '2023-03-06 17:37:20', '课程名称1', '课程类型1', 'upload/jianshenkecheng_tupian1.jpg,upload/jianshenkecheng_tupian2.jpg,upload/jianshenkecheng_tupian3.jpg', '2023-03-06', 1, '工号1', '教练姓名1', '2023-03-06 17:37:20', '课程介绍1');
+INSERT INTO `jianshenkecheng` VALUES (71, '2023-03-06 17:37:20', '课程名称1', '课程类型1', 'upload/jianshenkecheng_tupian1.jpg,upload/jianshenkecheng_tupian2.jpg,upload/jianshenkecheng_tupian3.jpg', '2023-03-06', 1, '工号1', '姓名1', '2023-03-06 17:37:20', '<p>课程介绍1</p>', 2);
+INSERT INTO `jianshenkecheng` VALUES (72, '2023-03-06 09:37:20', '课程名称2', '课程类型2', 'upload/jianshenkecheng_tupian2.jpg,upload/jianshenkecheng_tupian3.jpg,upload/jianshenkecheng_tupian4.jpg', '2023-03-06', 2, '工号2', '教练姓名2', '2023-03-06 17:37:20', '课程介绍2', 2);
+INSERT INTO `jianshenkecheng` VALUES (73, '2023-03-06 09:37:20', '课程名称3', '课程类型3', 'upload/jianshenkecheng_tupian3.jpg,upload/jianshenkecheng_tupian4.jpg,upload/jianshenkecheng_tupian5.jpg', '2023-03-06', 3, '工号3', '教练姓名3', '2023-03-06 17:37:20', '课程介绍3', 1);
+INSERT INTO `jianshenkecheng` VALUES (74, '2023-03-06 09:37:20', '课程名称4', '课程类型4', 'upload/jianshenkecheng_tupian4.jpg,upload/jianshenkecheng_tupian5.jpg,upload/jianshenkecheng_tupian6.jpg', '2023-03-06', 4, '工号4', '教练姓名4', '2023-03-06 17:37:20', '课程介绍4', 1);
+INSERT INTO `jianshenkecheng` VALUES (75, '2023-03-06 09:37:20', '课程名称5', '课程类型5', 'upload/jianshenkecheng_tupian5.jpg,upload/jianshenkecheng_tupian6.jpg,upload/jianshenkecheng_tupian7.jpg', '2023-03-06', 5, '工号5', '教练姓名5', '2023-03-06 17:37:20', '课程介绍5', 1);
+INSERT INTO `jianshenkecheng` VALUES (76, '2023-03-06 09:37:20', '课程名称6', '课程类型6', 'upload/jianshenkecheng_tupian6.jpg,upload/jianshenkecheng_tupian7.jpg,upload/jianshenkecheng_tupian8.jpg', '2023-03-06', 6, '工号6', '教练姓名6', '2023-03-06 17:37:20', '课程介绍6', 2);
+INSERT INTO `jianshenkecheng` VALUES (77, '2023-03-06 09:37:20', '课程名称7', '课程类型7', 'upload/jianshenkecheng_tupian7.jpg,upload/jianshenkecheng_tupian8.jpg,upload/jianshenkecheng_tupian9.jpg', '2023-03-06', 7, '工号7', '教练姓名7', '2023-03-06 17:37:20', '课程介绍7', 3);
+INSERT INTO `jianshenkecheng` VALUES (78, '2023-03-06 09:37:20', '课程名称8', '课程类型8', 'upload/jianshenkecheng_tupian8.jpg,upload/jianshenkecheng_tupian9.jpg,upload/jianshenkecheng_tupian10.jpg', '2023-03-06', 8, '工号2', '姓名2', '2023-03-06 17:37:20', '<p>课程介绍8</p>', 3);
 
 -- ----------------------------
 -- Table structure for jianshenqicai
@@ -285,7 +293,7 @@ CREATE TABLE `jianshenshangpin`  (
 -- ----------------------------
 -- Records of jianshenshangpin
 -- ----------------------------
-INSERT INTO `jianshenshangpin` VALUES (141, '2023-03-06 17:37:20', '商品名称1', '商品类型1', 'upload/jianshenshangpin_tupian1.jpg,upload/jianshenshangpin_tupian2.jpg,upload/jianshenshangpin_tupian3.jpg', '商品介绍1', '2023-03-06 17:37:20', 1, 99, 99.9, 1);
+INSERT INTO `jianshenshangpin` VALUES (141, '2023-03-06 17:37:20', '商品名称1', '商品类型1', 'upload/jianshenshangpin_tupian1.jpg,upload/jianshenshangpin_tupian2.jpg,upload/jianshenshangpin_tupian3.jpg', '商品介绍1', '2023-03-06 17:37:20', 1, 97, 99.9, 1);
 INSERT INTO `jianshenshangpin` VALUES (142, '2023-03-06 17:37:20', '商品名称2', '商品类型2', 'upload/jianshenshangpin_tupian2.jpg,upload/jianshenshangpin_tupian3.jpg,upload/jianshenshangpin_tupian4.jpg', '商品介绍2', '2023-03-06 17:37:20', 2, 99, 99.9, 2);
 INSERT INTO `jianshenshangpin` VALUES (143, '2023-03-06 17:37:20', '商品名称3', '商品类型3', 'upload/jianshenshangpin_tupian3.jpg,upload/jianshenshangpin_tupian4.jpg,upload/jianshenshangpin_tupian5.jpg', '商品介绍3', '2023-03-06 17:37:20', 3, 99, 99.9, 3);
 INSERT INTO `jianshenshangpin` VALUES (144, '2023-03-06 17:37:20', '商品名称4', '商品类型4', 'upload/jianshenshangpin_tupian4.jpg,upload/jianshenshangpin_tupian5.jpg,upload/jianshenshangpin_tupian6.jpg', '商品介绍4', '2023-03-06 17:37:20', 4, 99, 99.9, 4);
@@ -313,14 +321,17 @@ CREATE TABLE `jiaolianyuyue`  (
   `userid` int(20) NULL DEFAULT NULL,
   `state` int(1) NULL DEFAULT NULL COMMENT '预约状态 0 已取消，1已预约，2已完成',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1680174531169 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '教练预约' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1680243437696 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '教练预约' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of jiaolianyuyue
 -- ----------------------------
 INSERT INTO `jiaolianyuyue` VALUES (1680162325533, '2023-03-30 15:45:26', '工号2', '姓名2', '', '12', '2023-03-31 00:00:00', '9:00', '1', '姓名8', '13823888888', 18, 0);
-INSERT INTO `jiaolianyuyue` VALUES (1680170725055, '2023-03-30 18:05:26', '工号3', '姓名3', '', '1', '2023-04-20 00:00:00', '14:00', '1', '姓名8', '13823888888', 18, 1);
+INSERT INTO `jiaolianyuyue` VALUES (1680170725055, '2023-03-30 18:05:26', '工号3', '姓名3', '', '1', '2023-04-20 00:00:00', '14:00', '1', '姓名8', '13823888888', 18, 0);
 INSERT INTO `jiaolianyuyue` VALUES (1680174531168, '2023-03-30 19:08:52', '工号1', '姓名1', '', '1', '2023-03-31 00:00:00', '14:00', '1', '姓名8', '13823888888', 18, 1);
+INSERT INTO `jiaolianyuyue` VALUES (1680243376467, '2023-03-31 14:16:15', '工号1', '姓名1', '', '1', '2023-04-01 00:00:00', '9:00', '2', '姓名7', '13823888887', 17, 1);
+INSERT INTO `jiaolianyuyue` VALUES (1680243425981, '2023-03-31 14:17:05', '工号1', '姓名1', '', '1', '2023-04-01 00:00:00', '14:00', '1', '姓名8', '13823888888', 18, 1);
+INSERT INTO `jiaolianyuyue` VALUES (1680243437695, '2023-03-31 14:17:17', '工号2', '姓名2', '', '1', '2023-04-01 00:00:00', '9:00', '1', '姓名8', '13823888888', 18, 1);
 
 -- ----------------------------
 -- Table structure for messages
@@ -404,7 +415,7 @@ CREATE TABLE `orders`  (
   `logistics` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '物流',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `orderid`(`orderid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1680078327154 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1680244321517 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of orders
@@ -412,6 +423,8 @@ CREATE TABLE `orders`  (
 INSERT INTO `orders` VALUES (1680078323418, '2023-03-29 16:25:24', '2023329162522971', 'jianshenqicai', 18, 52, '器材名称2', 'upload/jianshenqicai_tupian2.jpg', 1, 2, 2, 2, 2, 1, '已支付', NULL, NULL, NULL, '', NULL);
 INSERT INTO `orders` VALUES (1680078325972, '2023-03-29 16:25:26', '2023329162525392', 'jianshenqicai', 18, 52, '器材名称2', 'upload/jianshenqicai_tupian2.jpg', 1, 2, 2, 2, 2, 1, '已支付', NULL, NULL, NULL, '', NULL);
 INSERT INTO `orders` VALUES (1680078327153, '2023-03-29 16:25:26', '2023329162525901', 'jianshenqicai', 18, 52, '器材名称2', 'upload/jianshenqicai_tupian2.jpg', 1, 2, 2, 2, 2, 1, '已支付', NULL, NULL, NULL, '', NULL);
+INSERT INTO `orders` VALUES (1680244319889, '2023-03-31 14:32:00', '2023331143159514', 'jianshenshangpin', 18, 141, '商品名称1', 'upload/jianshenshangpin_tupian1.jpg', 1, 99.9, 99.9, 99.9, 99.9, 1, '已支付', NULL, NULL, NULL, '', NULL);
+INSERT INTO `orders` VALUES (1680244321516, '2023-03-31 14:32:01', '20233311432142', 'jianshenshangpin', 18, 141, '商品名称1', 'upload/jianshenshangpin_tupian1.jpg', 1, 99.9, 99.9, 99.9, 99.9, 1, '已支付', NULL, NULL, NULL, '', NULL);
 
 -- ----------------------------
 -- Table structure for pingfenxinxi
@@ -513,7 +526,13 @@ CREATE TABLE `storeup`  (
   `inteltype` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '推荐类型',
   `remark` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '收藏表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1680228926849 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '收藏表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of storeup
+-- ----------------------------
+INSERT INTO `storeup` VALUES (1680228924882, '2023-03-31 10:15:24', 18, 71, 'jianshenkecheng', '课程名称1', 'upload/jianshenkecheng_tupian1.jpg', '1', NULL, NULL);
+INSERT INTO `storeup` VALUES (1680228926848, '2023-03-31 10:15:26', 18, 71, 'jianshenkecheng', '课程名称1', 'upload/jianshenkecheng_tupian1.jpg', '1', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for token
@@ -529,15 +548,16 @@ CREATE TABLE `token`  (
   `addtime` timestamp(0) NULL DEFAULT NULL COMMENT '新增时间',
   `expiratedtime` timestamp(0) NOT NULL COMMENT '过期时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'token表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'token表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of token
 -- ----------------------------
-INSERT INTO `token` VALUES (1, 1, 'admin', 'users', '管理员', '3fbu9dncejush164r863ifcbt1ggp3zf', '2023-03-06 17:40:27', '2023-03-30 18:54:02');
-INSERT INTO `token` VALUES (2, 18, '1', 'yonghu', '用户', 'k672nborz2k1ki3wfsyo2qikkf31owgb', '2023-03-06 17:40:40', '2023-03-30 20:08:32');
+INSERT INTO `token` VALUES (1, 1, 'admin', 'users', '管理员', 'q4etwwba43xeunxy0ewbfqnw1eya850y', '2023-03-06 17:40:27', '2023-03-31 16:35:59');
+INSERT INTO `token` VALUES (2, 18, '1', 'yonghu', '用户', '0g2eno6iqyt6ru4e8vvi066qzriq9azh', '2023-03-06 17:40:40', '2023-03-31 15:16:52');
 INSERT INTO `token` VALUES (3, 28, '1', 'jianshenjiaolian', '健身教练', '548ti22jxj4zhn8w7y9afalsn2qesfd1', '2023-03-06 17:42:06', '2023-03-30 19:17:25');
 INSERT INTO `token` VALUES (4, 22, '2', 'jianshenjiaolian', '健身教练', 'at7i50n8bff3qnstzh5xw9gd1g38xvxm', NULL, '2023-03-30 19:22:08');
+INSERT INTO `token` VALUES (5, 17, '2', 'yonghu', '用户', 'nmlg4ven50c7emzrj4zv5iprhufuk648', NULL, '2023-03-31 15:15:48');
 
 -- ----------------------------
 -- Table structure for users
@@ -577,10 +597,10 @@ CREATE TABLE `xuankexinxi`  (
   `crossuserid` bigint(20) NULL DEFAULT NULL COMMENT '跨表用户id',
   `crossrefid` bigint(20) NULL DEFAULT NULL COMMENT '跨表主键id',
   `ispay` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '未支付' COMMENT '是否支付',
-  `userid` int(20) NULL DEFAULT NULL COMMENT '用户id',
+  `curriculumlevel` int(1) NULL DEFAULT NULL COMMENT '课程层级 1普通课程 2半年卡课程 3年卡课程用户id',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `dingdanbianhao`(`dingdanbianhao`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1680164250424 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '选课信息' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1680243387245 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '选课信息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of xuankexinxi
@@ -593,7 +613,11 @@ INSERT INTO `xuankexinxi` VALUES (85, '2023-03-06 17:37:20', '5555555555', '课�
 INSERT INTO `xuankexinxi` VALUES (86, '2023-03-06 17:37:20', '6666666666', '课程名称6', '课程类型6', '工号6', '教练姓名6', 6, '2023-03-06', '用户名6', '姓名6', '13823888886', 6, 6, '未支付', NULL);
 INSERT INTO `xuankexinxi` VALUES (87, '2023-03-06 17:37:20', '7777777777', '课程名称7', '课程类型7', '工号7', '教练姓名7', 7, '2023-03-06', '用户名7', '姓名7', '13823888887', 7, 7, '未支付', NULL);
 INSERT INTO `xuankexinxi` VALUES (88, '2023-03-06 17:37:20', '8888888888', '课程名称8', '课程类型8', '1', '教练姓名8', 8, '2023-03-06', '1', '姓名8', '13823888888', 8, 8, '未支付', NULL);
-INSERT INTO `xuankexinxi` VALUES (1680164250423, '2023-03-30 16:17:31', '1680164087840', '课程名称1', '课程类型1', '工号1', '教练姓名1', 1, '2023-03-30', '1', '姓名8', '13823888888', 18, 71, '已支付', NULL);
+INSERT INTO `xuankexinxi` VALUES (1680230317224, '2023-03-31 10:38:37', '1680230307885', '课程名称1', '课程类型1', '工号1', '姓名1', 1, '2023-03-31', '1', '姓名8', '13823888888', 18, 71, '', 3);
+INSERT INTO `xuankexinxi` VALUES (1680242132642, '2023-03-31 13:55:32', '1680242102927', '课程名称7', '课程类型7', '工号7', '教练姓名7', 0, '2023-03-31', '1', '姓名8', '13823888888', 18, 77, '会员支付', NULL);
+INSERT INTO `xuankexinxi` VALUES (1680242842555, '2023-03-31 14:07:22', '1680242840569', '课程名称2', '课程类型2', '工号2', '教练姓名2', 2, '2023-03-31', '1', '姓名8', '13823888888', 18, 72, '', 2);
+INSERT INTO `xuankexinxi` VALUES (1680242964958, '2023-03-31 14:09:24', '1680242955208', '课程名称3', '课程类型3', '工号3', '教练姓名3', 3, '2023-03-31', '1', '姓名8', '13823888888', 18, 73, '会员支付', 1);
+INSERT INTO `xuankexinxi` VALUES (1680243387244, '2023-03-31 14:16:26', '1680243384883', '课程名称7', '课程类型7', '工号7', '教练姓名7', 7, '2023-03-31', '2', '姓名7', '13823888887', 17, 77, '已支付', 2);
 
 -- ----------------------------
 -- Table structure for yonghu
@@ -611,7 +635,7 @@ CREATE TABLE `yonghu`  (
   `youxiang` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮箱',
   `shouji` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '手机',
   `money` float NULL DEFAULT 0 COMMENT '余额',
-  `vip` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '否' COMMENT '是否会员',
+  `vip` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '否' COMMENT '会员',
   `synopsis` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '健身简介',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `yonghuming`(`yonghuming`) USING BTREE
@@ -620,14 +644,14 @@ CREATE TABLE `yonghu`  (
 -- ----------------------------
 -- Records of yonghu
 -- ----------------------------
-INSERT INTO `yonghu` VALUES (11, '2023-03-06 17:37:19', '用户名1', '123456', '姓名1', 'upload/yonghu_touxiang1.jpg', '男', '年龄1', '773890001@qq.com', '13823888881', 200, '否', NULL);
-INSERT INTO `yonghu` VALUES (12, '2023-03-06 17:37:19', '用户名2', '123456', '姓名2', 'upload/yonghu_touxiang2.jpg', '男', '年龄2', '773890002@qq.com', '13823888882', 200, '否', NULL);
-INSERT INTO `yonghu` VALUES (13, '2023-03-06 17:37:19', '用户名3', '123456', '姓名3', 'upload/yonghu_touxiang3.jpg', '男', '年龄3', '773890003@qq.com', '13823888883', 200, '否', NULL);
-INSERT INTO `yonghu` VALUES (14, '2023-03-06 17:37:19', '用户名4', '123456', '姓名4', 'upload/yonghu_touxiang4.jpg', '男', '年龄4', '773890004@qq.com', '13823888884', 200, '否', NULL);
-INSERT INTO `yonghu` VALUES (15, '2023-03-06 17:37:19', '用户名5', '123456', '姓名5', 'upload/yonghu_touxiang5.jpg', '男', '年龄5', '773890005@qq.com', '13823888885', 200, '否', NULL);
-INSERT INTO `yonghu` VALUES (16, '2023-03-06 17:37:19', '用户名6', '123456', '姓名6', 'upload/yonghu_touxiang6.jpg', '男', '年龄6', '773890006@qq.com', '13823888886', 200, '否', NULL);
-INSERT INTO `yonghu` VALUES (17, '2023-03-06 17:37:19', '用户名7', '123456', '姓名7', 'upload/yonghu_touxiang7.jpg', '男', '年龄7', '773890007@qq.com', '13823888887', 200, '否', NULL);
-INSERT INTO `yonghu` VALUES (18, '2023-03-06 17:37:19', '1', '1', '姓名8', 'upload/yonghu_touxiang8.jpg', '男', '年龄8', '', '13823888888', 1303, '是', '12323');
+INSERT INTO `yonghu` VALUES (11, '2023-03-06 17:37:19', '用户名1', '123456', '姓名1', 'upload/yonghu_touxiang1.jpg', '男', '年龄1', '773890001@qq.com', '13823888881', 200, '普通会员', NULL);
+INSERT INTO `yonghu` VALUES (12, '2023-03-06 17:37:19', '用户名2', '123456', '姓名2', 'upload/yonghu_touxiang2.jpg', '男', '年龄2', '773890002@qq.com', '13823888882', 200, '普通会员', NULL);
+INSERT INTO `yonghu` VALUES (13, '2023-03-06 17:37:19', '用户名3', '123456', '姓名3', 'upload/yonghu_touxiang3.jpg', '男', '年龄3', '773890003@qq.com', '13823888883', 200, '普通会员', NULL);
+INSERT INTO `yonghu` VALUES (14, '2023-03-06 17:37:19', '用户名4', '123456', '姓名4', 'upload/yonghu_touxiang4.jpg', '男', '年龄4', '773890004@qq.com', '13823888884', 200, '普通会员', NULL);
+INSERT INTO `yonghu` VALUES (15, '2023-03-06 17:37:19', '用户名5', '123456', '姓名5', 'upload/yonghu_touxiang5.jpg', '男', '年龄5', '773890005@qq.com', '13823888885', 200, '普通会员', NULL);
+INSERT INTO `yonghu` VALUES (16, '2023-03-06 17:37:19', '用户名6', '123456', '姓名6', 'upload/yonghu_touxiang6.jpg', '男', '年龄6', '773890006@qq.com', '13823888886', 200, '普通会员', NULL);
+INSERT INTO `yonghu` VALUES (17, '2023-03-06 17:37:19', '2', '2', '姓名7', 'upload/yonghu_touxiang7.jpg', '男', '年龄7', '773890007@qq.com', '13823888887', 200, '半年卡', NULL);
+INSERT INTO `yonghu` VALUES (18, '2023-03-06 17:37:19', '1', '1', '姓名8', 'upload/yonghu_touxiang8.jpg', '男', '年龄8', '', '13823888888', 1103.2, '半年卡', '12323');
 
 -- ----------------------------
 -- Table structure for yuyuequxiao
