@@ -27,9 +27,10 @@
                 placeholder="教练姓名" clearable readonly></el-input>
           </el-form-item>
           <el-form-item :style='{"width":"100%","padding":"10px","margin":"0 2% 10px","display":"inline-block"}' label="价格" prop="jiage">
-            <el-input v-model="ruleForm.jiage"
-                placeholder="价格" clearable readonly></el-input>
+            <el-input v-model="ruleForm.jiage" v-if="this.vip == '普通课程' || (this.vip == '半年卡' && ruleForm.curriculumlevel == 3)" placeholder="价格" clearable readonly></el-input>
+            <el-input value="免费" v-else="" placeholder="价格" clearable readonly></el-input>
           </el-form-item>
+
           <el-form-item :style='{"width":"100%","padding":"10px","margin":"0 2% 10px","display":"inline-block"}' label="下单时间" prop="xiadanshijian" disabled>
               <el-date-picker
                   format="yyyy 年 MM 月 dd 日"
@@ -52,7 +53,7 @@
                 placeholder="手机" clearable readonly></el-input>
           </el-form-item>
           <el-form-item :style='{"width":"100%","padding":"10px","margin":"0 2% 10px","display":"inline-block"}' label="课程层级" prop="curriculumlevel">
-            <el-input v-model="ruleForm.curriculumlevel"
+            <el-input v-model="ruleForm.curriculumlevel==1?'普通课程':ruleForm.curriculumlevel==2?'半年卡课程':'年卡课程'"
                 placeholder="课程层级" clearable readonly></el-input>
           </el-form-item>
 
@@ -70,6 +71,7 @@
       return {
         id: '',
         baseUrl: '',
+        vip: localStorage.getItem('vip'),
         ro:{
             dingdanbianhao : false,
             kechengmingcheng : false,
@@ -193,7 +195,7 @@
               continue;
             }
             if(o=='curriculumlevel'){
-              this.ruleForm.curriculumlevel = obj[o]==1?"普通课程":obj[o]==2?"半年卡课程":"年卡课程";
+              this.ruleForm.curriculumlevel = obj[o];
               this.ro.curriculumlevel = true;
               continue;
             }
@@ -257,7 +259,7 @@
       },
       // 提交
       onSubmit() {
-
+        this.ruleForm.ispay =  this.vip == '普通课程' || (this.vip == '半年卡' && this.ruleForm.curriculumlevel == 3)?"未支付":"会员支付";
         //更新跨表属性
         var crossuserid;
         var crossrefid;
@@ -306,9 +308,6 @@
                           return false;
                      } else {
                          // 跨表计算
-                         if(this.ruleForm.curriculumlevel){
-                             this.ruleForm.curriculumlevel = this.ruleForm.curriculumlevel=="普通课程"?1:this.ruleForm.curriculumlevel=="半年卡课程"?2:"年卡课程";
-                         }
                           this.$http.post('xuankexinxi/add', this.ruleForm).then(res => {
                               if (res.data.code == 0) {
                                   this.$message({
@@ -330,9 +329,6 @@
                      }
                  });
              } else {
-                  if(this.ruleForm.curriculumlevel){
-                      this.ruleForm.curriculumlevel = this.ruleForm.curriculumlevel=="普通课程"?1:this.ruleForm.curriculumlevel=="半年卡课程"?2:"年卡课程";
-                  }
                   this.$http.post('xuankexinxi/add', this.ruleForm).then(res => {
                      if (res.data.code == 0) {
                           this.$message({

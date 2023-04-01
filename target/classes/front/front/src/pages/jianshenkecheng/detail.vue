@@ -36,7 +36,7 @@
 				</div>
 				<div class="item" :style='{"width":"50%","padding":"10px","margin":"0 0 10px 0","background":"#f5f5f5","justifyContent":"spaceBetween","display":"inline-block"}'>
 					<div class="lable" :style='{"padding":"0 10px","color":"#999","textAlign":"right","display":"inline-block","width":"110px","fontSize":"14px","lineHeight":"40px","height":"40px"}'>价格</div>
-					<div  :style='{"padding":"0 10px","color":"#666","display":"inline-block","width":"calc(100% - 110px)","fontSize":"14px","lineHeight":"40px","height":"40px"}'>{{detail.jiage}}</div>
+					<div  :style='{"padding":"0 10px","color":"#666","display":"inline-block","width":"calc(100% - 110px)","fontSize":"14px","lineHeight":"40px","height":"40px"}'>{{ vip == "普通会员" || (vip == "半年卡" && detail.curriculumlevel == 3)?detail.jiage:"免费"}}</div>
 				</div>
 				<div class="item" :style='{"width":"50%","padding":"10px","margin":"0 0 10px 0","background":"#f5f5f5","justifyContent":"spaceBetween","display":"inline-block"}'>
 					<div class="lable" :style='{"padding":"0 10px","color":"#999","textAlign":"right","display":"inline-block","width":"110px","fontSize":"14px","lineHeight":"40px","height":"40px"}'>课程层级</div>
@@ -119,6 +119,7 @@
     data() {
       return {
         tablename: 'jianshenkecheng',
+        vip: localStorage.getItem('vip'),
         baseUrl: '',
         breadcrumbItem: [
           {

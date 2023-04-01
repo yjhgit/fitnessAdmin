@@ -73,8 +73,8 @@
 				<el-form-item :style='{"margin":"0 0 20px 0"}' v-else class="input" label="手机" prop="shouji">
 					<el-input v-model="ruleForm.shouji" placeholder="手机" readonly></el-input>
 				</el-form-item>
-				<el-form-item :style='{"margin":"0 0 20px 0"}' class="select" v-if="type!='info'"  label="是否会员" prop="vip">
-					<el-select :disabled="ro.vip" v-model="ruleForm.vip" placeholder="请选择是否会员" >
+				<el-form-item :style='{"margin":"0 0 20px 0"}' class="select" v-if="type!='info'"  label="会员" prop="vip">
+					<el-select :disabled="ro.vip" v-model="ruleForm.vip" placeholder="请选择会员" >
 						<el-option
 							v-for="(item,index) in vipOptions"
 							v-bind:key="index"
@@ -83,9 +83,9 @@
 						</el-option>
 					</el-select>
 				</el-form-item>
-				<el-form-item :style='{"margin":"0 0 20px 0"}' v-else class="input" label="是否会员" prop="vip">
+				<el-form-item :style='{"margin":"0 0 20px 0"}' v-else class="input" label="会员" prop="vip">
 					<el-input v-model="ruleForm.vip"
-						placeholder="是否会员" readonly></el-input>
+						placeholder="会员" readonly></el-input>
 				</el-form-item>
 			</template>
 			<el-form-item :style='{"padding":"0","margin":"0"}' class="btn">
@@ -94,7 +94,7 @@
 				<el-button :style='{"border":"0px solid #ccc","cursor":"pointer","padding":"0 30px","margin":"0","outline":"none","color":"#fff","borderRadius":"4px","background":"radial-gradient(circle, rgba(137,195,255,1) 0%, rgba(64,158,255,1) 100%)","width":"auto","lineHeight":"40px","fontSize":"14px","height":"40px"}' v-if="type=='info'" class="btn-close" @click="back()">返回</el-button>
 			</el-form-item>
 		</el-form>
-    
+
 
   </div>
 </template>
@@ -170,8 +170,8 @@ export default {
 		return {
 			id: '',
 			type: '',
-			
-			
+
+
 			ro:{
 				yonghuming : false,
 				mima : false,
@@ -184,8 +184,8 @@ export default {
 				money : false,
 				vip : false,
 			},
-			
-			
+
+
 			ruleForm: {
 				yonghuming: '',
 				mima: '',
@@ -196,10 +196,10 @@ export default {
 				youxiang: '',
 				shouji: '',
 			},
-		
+
 			xingbieOptions: [],
 			vipOptions: [],
-			
+
 			rules: {
 				yonghuming: [
 					{ required: true, message: '用户名不能为空', trigger: 'blur' },
@@ -238,7 +238,7 @@ export default {
 	created() {
 	},
 	methods: {
-		
+
 		// 下载
 		download(file){
 			window.open(`${file}`)
@@ -308,7 +308,7 @@ export default {
 							continue;
 						}
 				}
-				
+
 
 
 
@@ -320,24 +320,24 @@ export default {
 
 
 			}
-			
-			
+
+
 			// 获取用户信息
 			this.$http({
 				url: `${this.$storage.get('sessionTable')}/session`,
 				method: "get"
 			}).then(({ data }) => {
 				if (data && data.code === 0) {
-					
+
 					var json = data.data;
 				} else {
 					this.$message.error(data.msg);
 				}
 			});
-			
+
             this.xingbieOptions = "男,女".split(',')
-            this.vipOptions = "是,否".split(',')
-			
+            this.vipOptions = "普通会员,半年卡,年卡".split(',')
+
 		},
     // 多级联动参数
 
@@ -419,20 +419,20 @@ var objcross = this.$storage.getObj('crossObj');
 		 if(crossrefid && crossuserid) {
 			 this.ruleForm.crossuserid = crossuserid;
 			 this.ruleForm.crossrefid = crossrefid;
-			let params = { 
-				page: 1, 
-				limit: 10, 
+			let params = {
+				page: 1,
+				limit: 10,
 				crossuserid:this.ruleForm.crossuserid,
 				crossrefid:this.ruleForm.crossrefid,
-			} 
-			this.$http({ 
-				url: "yonghu/page", 
-				method: "get", 
-				params: params 
-			}).then(({ 
-				data 
-			}) => { 
-				if (data && data.code === 0) { 
+			}
+			this.$http({
+				url: "yonghu/page",
+				method: "get",
+				params: params
+			}).then(({
+				data
+			}) => {
+				if (data && data.code === 0) {
 				       if(data.data.total>=crossoptnum) {
 					     this.$message.error(this.$storage.get('tips'));
 					       return false;
@@ -461,8 +461,8 @@ var objcross = this.$storage.getObj('crossObj');
 					 });
 
 				       }
-				} else { 
-				} 
+				} else {
+				}
 			});
 		 } else {
 			 this.$http({
@@ -513,15 +513,15 @@ var objcross = this.$storage.getObj('crossObj');
 		width: 100%;
 		height: 500px;
 	}
-	
+
 	.search-box {
 		position: absolute;
 	}
-	
+
 	.el-date-editor.el-input {
 		width: auto;
 	}
-	
+
 	.add-update-preview .el-form-item /deep/ .el-form-item__label {
 	  	  padding: 0 10px 0 0;
 	  	  text-shadow: 0 1px 10px #fff;
@@ -532,11 +532,11 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  line-height: 40px;
 	  	  text-align: right;
 	  	}
-	
+
 	.add-update-preview .el-form-item /deep/ .el-form-item__content {
 	  margin-left: 80px;
 	}
-	
+
 	.add-update-preview .el-input /deep/ .el-input__inner {
 	  	  border-radius: 0px;
 	  	  padding: 0 12px;
@@ -551,7 +551,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  border-style: solid;
 	  	  height: 40px;
 	  	}
-	
+
 	.add-update-preview .el-select /deep/ .el-input__inner {
 	  	  border-radius: 0px;
 	  	  padding: 0 10px;
@@ -565,7 +565,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  border-style: solid;
 	  	  height: 40px;
 	  	}
-	
+
 	.add-update-preview .el-date-editor /deep/ .el-input__inner {
 	  	  border: 0px solid #333;
 	  	  border-radius: 0px;
@@ -580,7 +580,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  border-style: solid;
 	  	  height: 40px;
 	  	}
-	
+
 	.add-update-preview /deep/ .el-upload--picture-card {
 		background: transparent;
 		border: 0;
@@ -590,7 +590,7 @@ var objcross = this.$storage.getObj('crossObj');
 		line-height: initial;
 		vertical-align: middle;
 	}
-	
+
 	.add-update-preview /deep/ .upload .upload-img {
 	  	  border: 2px solid #ddd;
 	  	  cursor: pointer;
@@ -602,7 +602,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  text-align: center;
 	  	  height: 100px;
 	  	}
-	
+
 	.add-update-preview /deep/ .el-upload-list .el-upload-list__item {
 	  	  border: 2px solid #ddd;
 	  	  cursor: pointer;
@@ -614,7 +614,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  text-align: center;
 	  	  height: 100px;
 	  	}
-	
+
 	.add-update-preview /deep/ .el-upload .el-icon-plus {
 	  	  border: 2px solid #ddd;
 	  	  cursor: pointer;
@@ -626,7 +626,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  text-align: center;
 	  	  height: 100px;
 	  	}
-	
+
 	.add-update-preview .el-textarea /deep/ .el-textarea__inner {
 	  	  border: 2px solid #ebeaed;
 	  	  border-radius: 4px;

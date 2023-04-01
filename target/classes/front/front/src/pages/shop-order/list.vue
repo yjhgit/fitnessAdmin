@@ -2,10 +2,8 @@
 <div :style='{"width":"1000px","padding":"20px","margin":"10px auto","position":"relative","background":"#D8D8D8"}'>
     <el-button :style='{"border":"0","cursor":"pointer","padding":"0 10px","margin":"0 5px 0 0","outline":"none","color":"#fff","borderRadius":"4px","background":"#BECCBA","width":"auto","lineHeight":"40px","fontSize":"14px","height":"40px"}' type="warning" size="mini" @click="backClick" class="el-icon-back">返回</el-button>
     <div class="section-title" :style='{"margin":"10px 0","fontSize":"20px","lineHeight":"54px","color":"#333","textAlign":"center","background":"#f5f5f5"}'>我的订单</div>
-    <el-tabs v-model="activeName" @tab-click="handleClick"">
-      <el-tab-pane label="未支付" name="未支付"></el-tab-pane>
+    <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="已支付" name="已支付"></el-tab-pane>
-      <el-tab-pane label="已完成" name="已完成"></el-tab-pane>
       <el-tab-pane label="已退款" name="已退款"></el-tab-pane>
       <el-tab-pane label="已取消" name="已取消"></el-tab-pane>
     </el-tabs>
@@ -46,7 +44,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
 	<el-pagination
 	  background
 	  class="pagination"
@@ -67,7 +65,7 @@
     <el-dialog title="物流信息" :visible.sync="logisticsVisible" width="30%">
         <div v-html="logisticsText"></div>
     </el-dialog>
-	
+
 </div>
 </template>
 
@@ -438,7 +436,7 @@
 	.shangpin {
 	  display: flex;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__total {
 		margin: 0 10px 0 0;
 		color: #666;
@@ -449,7 +447,7 @@
 		line-height: 28px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .btn-prev {
 		border: none;
 		border-radius: 2px;
@@ -464,7 +462,7 @@
 		min-width: 35px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .btn-next {
 		border: none;
 		border-radius: 2px;
@@ -479,7 +477,7 @@
 		min-width: 35px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .btn-prev:disabled {
 		border: none;
 		cursor: not-allowed;
@@ -494,7 +492,7 @@
 		line-height: 28px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .btn-next:disabled {
 		border: none;
 		cursor: not-allowed;
@@ -509,14 +507,14 @@
 		line-height: 28px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .el-pager {
 		padding: 0;
 		margin: 0;
 		display: inline-block;
 		vertical-align: top;
 	}
-	
+
 	.el-pagination /deep/ .el-pager .number {
 		cursor: pointer;
 		padding: 0 4px;
@@ -532,7 +530,7 @@
 		min-width: 30px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .el-pager .number:hover {
 		cursor: pointer;
 		padding: 0 4px;
@@ -548,7 +546,7 @@
 		min-width: 30px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .el-pager .number.active {
 		cursor: default;
 		padding: 0 4px;
@@ -564,7 +562,7 @@
 		min-width: 30px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__sizes {
 		display: inline-block;
 		vertical-align: top;
@@ -572,13 +570,13 @@
 		line-height: 28px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__sizes .el-input {
 		margin: 0 5px;
 		width: 100px;
 		position: relative;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__sizes .el-input .el-input__inner {
 		border: 1px solid #DCDFE6;
 		cursor: pointer;
@@ -594,14 +592,14 @@
 		text-align: center;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__sizes .el-input span.el-input__suffix {
 		top: 0;
 		position: absolute;
 		right: 0;
 		height: 100%;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__sizes .el-input .el-input__suffix .el-select__caret {
 		cursor: pointer;
 		color: #C0C4CC;
@@ -610,7 +608,7 @@
 		line-height: 28px;
 		text-align: center;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__jump {
 		margin: 0 0 0 24px;
 		color: #606266;
@@ -620,7 +618,7 @@
 		line-height: 28px;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__jump .el-input {
 		border-radius: 3px;
 		padding: 0 2px;
@@ -633,7 +631,7 @@
 		text-align: center;
 		height: 28px;
 	}
-	
+
 	.el-pagination /deep/ .el-pagination__jump .el-input .el-input__inner {
 		border: 1px solid #DCDFE6;
 		cursor: pointer;

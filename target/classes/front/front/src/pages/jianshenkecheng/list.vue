@@ -36,7 +36,7 @@
 				<div v-if="item.price" :style='{"padding":"10px","lineHeight":"32px","fontSize":"18px","color":"red","textAlign":"center"}' class="price"><span :style='{"fontSize":"12px"}'>￥</span>{{item.price}}</div>
 				<div :style='{"padding":"0 10px","margin":"3px auto","color":"#fff","borderRadius":"20px","textAlign":"center","background":"#BECCBA","width":"80%","lineHeight":"32px","fontSize":"14px"}' class="name ">{{item.kechengmingcheng}}</div>
 				<div :style='{"padding":"0 10px","margin":"3px auto","color":"#fff","borderRadius":"20px","textAlign":"center","background":"#BECCBA","width":"80%","lineHeight":"32px","fontSize":"14px"}' class="name ">{{item.shangkeshijian}}</div>
-				<div :style='{"padding":"0 10px","margin":"3px auto","color":"#fff","borderRadius":"20px","textAlign":"center","background":"#BECCBA","width":"80%","lineHeight":"32px","fontSize":"14px"}' class="name ">价格:{{item.jiage}}</div>
+				<div :style='{"padding":"0 10px","margin":"3px auto","color":"#fff","borderRadius":"20px","textAlign":"center","background":"#BECCBA","width":"80%","lineHeight":"32px","fontSize":"14px"}' class="name ">价格:{{ vip == "普通会员" || (vip == "半年卡" && item.curriculumlevel == 3)?item.jiage:"免费"}}</div>
 				<div :style='{"padding":"0 10px","margin":"3px auto","color":"#fff","borderRadius":"20px","textAlign":"center","background":"#BECCBA","width":"80%","lineHeight":"32px","fontSize":"14px"}' class="name ">{{item.jiaolianxingming}}</div>
 				<div :style='{"padding":"0 10px","margin":"3px auto","color":"#fff","borderRadius":"20px","textAlign":"center","background":"#BECCBA","width":"80%","lineHeight":"32px","fontSize":"14px"}' class="name ">{{item.curriculumlevel==1?"普通课程":item.curriculumlevel==2?"半年卡课程":"年卡课程"}}</div>
 			</div>
@@ -73,6 +73,7 @@
     data() {
       return {
 	    layouts: '',
+	    vip: localStorage.getItem('vip'),
 		swiperIndex: -1,
         baseUrl: '',
         breadcrumbItem: [
