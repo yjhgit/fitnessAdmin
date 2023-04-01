@@ -11,7 +11,7 @@
  Target Server Version : 50740
  File Encoding         : 65001
 
- Date: 31/03/2023 16:10:25
+ Date: 01/04/2023 13:59:28
 */
 
 SET NAMES utf8mb4;
@@ -23,7 +23,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `address`;
 CREATE TABLE `address`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `userid` bigint(20) NOT NULL COMMENT '用户id',
   `address` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '地址',
   `name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '收货人',
@@ -50,7 +50,7 @@ INSERT INTO `address` VALUES (8, '2023-03-06 17:37:20', 18, '宇宙银河系地�
 DROP TABLE IF EXISTS `cart`;
 CREATE TABLE `cart`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `tablename` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'jianshenshangpin' COMMENT '商品表名',
   `userid` bigint(20) NOT NULL COMMENT '用户id',
   `goodid` bigint(20) NOT NULL COMMENT '商品id',
@@ -86,7 +86,7 @@ INSERT INTO `config` VALUES (3, 'picture3', 'upload/picture3.jpg');
 DROP TABLE IF EXISTS `diaokeshenqing`;
 CREATE TABLE `diaokeshenqing`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `kechengmingcheng` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '课程名称',
   `kechengleixing` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '课程类型',
   `shenqingshuoming` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '申请说明',
@@ -116,7 +116,7 @@ INSERT INTO `diaokeshenqing` VALUES (128, '2023-03-06 17:37:20', '课程名称8'
 DROP TABLE IF EXISTS `discussjianshenjiaolian`;
 CREATE TABLE `discussjianshenjiaolian`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `refid` bigint(20) NOT NULL COMMENT '关联表id',
   `userid` bigint(20) NOT NULL COMMENT '用户id',
   `avatarurl` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '头像',
@@ -132,7 +132,7 @@ CREATE TABLE `discussjianshenjiaolian`  (
 DROP TABLE IF EXISTS `discussjianshenkecheng`;
 CREATE TABLE `discussjianshenkecheng`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `refid` bigint(20) NOT NULL COMMENT '关联表id',
   `userid` bigint(20) NOT NULL COMMENT '用户id',
   `avatarurl` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '头像',
@@ -148,7 +148,7 @@ CREATE TABLE `discussjianshenkecheng`  (
 DROP TABLE IF EXISTS `discussjianshenqicai`;
 CREATE TABLE `discussjianshenqicai`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `refid` bigint(20) NOT NULL COMMENT '关联表id',
   `userid` bigint(20) NOT NULL COMMENT '用户id',
   `avatarurl` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '头像',
@@ -164,7 +164,7 @@ CREATE TABLE `discussjianshenqicai`  (
 DROP TABLE IF EXISTS `discussjianshenshangpin`;
 CREATE TABLE `discussjianshenshangpin`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `refid` bigint(20) NOT NULL COMMENT '关联表id',
   `userid` bigint(20) NOT NULL COMMENT '用户id',
   `avatarurl` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '头像',
@@ -180,7 +180,7 @@ CREATE TABLE `discussjianshenshangpin`  (
 DROP TABLE IF EXISTS `jianshenjiaolian`;
 CREATE TABLE `jianshenjiaolian`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `gonghao` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '工号',
   `mima` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码',
   `jiaolianxingming` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '姓名',
@@ -213,7 +213,7 @@ INSERT INTO `jianshenjiaolian` VALUES (28, '2023-03-06 17:37:20', '1', '1', '姓
 DROP TABLE IF EXISTS `jianshenkecheng`;
 CREATE TABLE `jianshenkecheng`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `kechengmingcheng` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '课程名称',
   `kechengleixing` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '课程类型',
   `tupian` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '图片',
@@ -245,7 +245,7 @@ INSERT INTO `jianshenkecheng` VALUES (78, '2023-03-06 09:37:20', '课程名称8'
 DROP TABLE IF EXISTS `jianshenqicai`;
 CREATE TABLE `jianshenqicai`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `qicaibianhao` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '器材编号',
   `qicaimingcheng` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '器材名称',
   `qicaileixing` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '器材类型',
@@ -277,7 +277,7 @@ INSERT INTO `jianshenqicai` VALUES (58, '2023-03-06 17:37:20', '器材编号8', 
 DROP TABLE IF EXISTS `jianshenshangpin`;
 CREATE TABLE `jianshenshangpin`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `shangpinmingcheng` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品名称',
   `shangpinleixing` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品类型',
   `tupian` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '图片',
@@ -308,7 +308,7 @@ INSERT INTO `jianshenshangpin` VALUES (148, '2023-03-06 17:37:20', '商品名称
 DROP TABLE IF EXISTS `jiaolianyuyue`;
 CREATE TABLE `jiaolianyuyue`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `gonghao` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '工号',
   `jiaolianxingming` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '教练姓名',
   `changdimingcheng` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '场地名称',
@@ -339,7 +339,7 @@ INSERT INTO `jiaolianyuyue` VALUES (1680243437695, '2023-03-31 14:17:17', '工�
 DROP TABLE IF EXISTS `messages`;
 CREATE TABLE `messages`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `userid` bigint(20) NOT NULL COMMENT '留言人id',
   `username` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户名',
   `avatarurl` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '头像',
@@ -368,7 +368,7 @@ INSERT INTO `messages` VALUES (208, '2023-03-06 17:37:20', 8, '用户名8', 'upl
 DROP TABLE IF EXISTS `news`;
 CREATE TABLE `news`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `title` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '标题',
   `introduction` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '简介',
   `picture` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '图片',
@@ -394,7 +394,7 @@ INSERT INTO `news` VALUES (198, '2023-03-06 17:37:20', '坚持才会成功', '�
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `orderid` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '订单编号',
   `tablename` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'jianshenshangpin' COMMENT '商品表名',
   `userid` bigint(20) NOT NULL COMMENT '用户id',
@@ -432,7 +432,7 @@ INSERT INTO `orders` VALUES (1680244321516, '2023-03-31 14:32:01', '202333114321
 DROP TABLE IF EXISTS `pingfenxinxi`;
 CREATE TABLE `pingfenxinxi`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `gonghao` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '工号',
   `jiaolianxingming` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '教练姓名',
   `gerenpingjia` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '个人评价',
@@ -462,7 +462,7 @@ INSERT INTO `pingfenxinxi` VALUES (48, '2023-03-06 17:37:20', '工号8', '教练
 DROP TABLE IF EXISTS `qicaizujie`;
 CREATE TABLE `qicaizujie`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `qicaimingcheng` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '器材名称',
   `qicaileixing` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '器材类型',
   `zujieshuliang` int(11) NOT NULL COMMENT '租借数量',
@@ -492,7 +492,7 @@ INSERT INTO `qicaizujie` VALUES (68, '2023-03-06 17:37:20', '器材名称8', '�
 DROP TABLE IF EXISTS `shangpinleixing`;
 CREATE TABLE `shangpinleixing`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `shangpinleixing` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品类型',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `shangpinleixing`(`shangpinleixing`) USING BTREE
@@ -516,7 +516,7 @@ INSERT INTO `shangpinleixing` VALUES (138, '2023-03-06 17:37:20', '商品类型8
 DROP TABLE IF EXISTS `storeup`;
 CREATE TABLE `storeup`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `userid` bigint(20) NOT NULL COMMENT '用户id',
   `refid` bigint(20) NULL DEFAULT NULL COMMENT '商品id',
   `tablename` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '表名',
@@ -554,7 +554,7 @@ CREATE TABLE `token`  (
 -- Records of token
 -- ----------------------------
 INSERT INTO `token` VALUES (1, 1, 'admin', 'users', '管理员', 'q4etwwba43xeunxy0ewbfqnw1eya850y', '2023-03-06 17:40:27', '2023-03-31 16:35:59');
-INSERT INTO `token` VALUES (2, 18, '1', 'yonghu', '用户', '0g2eno6iqyt6ru4e8vvi066qzriq9azh', '2023-03-06 17:40:40', '2023-03-31 15:16:52');
+INSERT INTO `token` VALUES (2, 18, '1', 'yonghu', '用户', 'qtk0i1ht9x1g3od66y0k7gw3vbagnom4', '2023-03-06 17:40:40', '2023-04-01 14:34:05');
 INSERT INTO `token` VALUES (3, 28, '1', 'jianshenjiaolian', '健身教练', '548ti22jxj4zhn8w7y9afalsn2qesfd1', '2023-03-06 17:42:06', '2023-03-30 19:17:25');
 INSERT INTO `token` VALUES (4, 22, '2', 'jianshenjiaolian', '健身教练', 'at7i50n8bff3qnstzh5xw9gd1g38xvxm', NULL, '2023-03-30 19:22:08');
 INSERT INTO `token` VALUES (5, 17, '2', 'yonghu', '用户', 'nmlg4ven50c7emzrj4zv5iprhufuk648', NULL, '2023-03-31 15:15:48');
@@ -568,7 +568,7 @@ CREATE TABLE `users`  (
   `username` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户名',
   `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码',
   `role` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '管理员' COMMENT '角色',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '新增时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '新增时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户表' ROW_FORMAT = Dynamic;
 
@@ -583,7 +583,7 @@ INSERT INTO `users` VALUES (1, 'admin', 'admin', '管理员', '2023-03-06 17:37:
 DROP TABLE IF EXISTS `xuankexinxi`;
 CREATE TABLE `xuankexinxi`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `dingdanbianhao` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '订单编号',
   `kechengmingcheng` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '课程名称',
   `kechengleixing` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '课程类型',
@@ -625,7 +625,7 @@ INSERT INTO `xuankexinxi` VALUES (1680243387244, '2023-03-31 14:16:26', '1680243
 DROP TABLE IF EXISTS `yonghu`;
 CREATE TABLE `yonghu`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `yonghuming` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户名',
   `mima` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码',
   `xingming` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '姓名',
@@ -659,7 +659,7 @@ INSERT INTO `yonghu` VALUES (18, '2023-03-06 17:37:19', '1', '1', '姓名8', 'up
 DROP TABLE IF EXISTS `yuyuequxiao`;
 CREATE TABLE `yuyuequxiao`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `gonghao` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '工号',
   `jiaolianxingming` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '教练姓名',
   `changdimingcheng` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '场地名称',
@@ -691,7 +691,7 @@ INSERT INTO `yuyuequxiao` VALUES (118, '2023-03-06 17:37:20', '工号8', '教练
 DROP TABLE IF EXISTS `zaixianliuyan`;
 CREATE TABLE `zaixianliuyan`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `addtime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `gonghao` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '工号',
   `jiaolianxingming` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '教练姓名',
   `liuyanneirong` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '留言内容',
