@@ -191,6 +191,12 @@ public class JiaolianyuyueController {
         return R.ok();
     }
 
+    @RequestMapping("/deleteById")
+    public R delete(Long id){
+        jiaolianyuyueService.deleteById(id);
+        return R.ok();
+    }
+
     /**
      * 提醒接口
      */

@@ -37,7 +37,8 @@
             </el-table-column>
             <el-table-column label="操作" width="150">
                 <template slot-scope="scope">
-                    <el-button v-show="scope.row.state == 1" type="success" :style='{"margin":"2px auto",}' size="mini" @click="cancel(scope.row)">取消预约</el-button>
+                    <el-button v-show="scope.row.state == 1" type="success" :style='{"margin":"2px auto",}' size="mini" @click="cancel(scope.row)">取消</el-button>
+                    <el-button v-show="scope.row.state != 1" type="success" :style='{"margin":"2px auto",}' size="mini" @click="deleteOrder(scope.row)">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -49,6 +50,7 @@
     export default {
         data() {
             return {
+                dataListSelections: [],
                 tableData: [],
                 total: 1,
                 pageSize: 10,pageSizes: [10,20,30,50],
@@ -86,6 +88,13 @@
             },
             cancel(rowData){
                 this.$http.get('jiaolianyuyue/cancel?id='+rowData.id).then(res => {
+                    if (res.data.code == 0) {
+                        this.getMyOrderList(1);
+                    }
+                });
+            },
+            deleteOrder(rowData){
+                this.$http.get('jiaolianyuyue/deleteById?id='+rowData.id).then(res => {
                     if (res.data.code == 0) {
                         this.getMyOrderList(1);
                     }

@@ -26,8 +26,9 @@
               </el-date-picker>
           </el-form-item>
           <el-form-item v-show="ruleForm.yuyueshijian" :style='{"width":"100%","padding":"10px","margin":"0 2% 10px","display":"inline-block"}' prop="timeFrame">
-            <el-radio v-model="ruleForm.timeFrame" label="9:00">上午 9:00</el-radio>
-            <el-radio v-model="ruleForm.timeFrame" label="14:00">下午 14:00</el-radio>
+            <el-radio v-model="ruleForm.timeFrame" label="9:00-12:00">上午 9:00-12:00</el-radio>
+            <el-radio v-model="ruleForm.timeFrame" label="14:00-17:00">下午 14:00-17:00</el-radio>
+            <el-radio v-model="ruleForm.timeFrame" label="19:00-22:00">晚上 19:00-22:00</el-radio>
           </el-form-item>
           <el-form-item :style='{"width":"100%","padding":"10px","margin":"0 2% 10px","display":"inline-block"}' label="用户名" prop="yonghuming">
             <el-input v-model="ruleForm.yonghuming" :disabled="true"
