@@ -47,10 +47,6 @@
 				<div v-if="false" :style='{"width":"64px","lineHeight":"44px","fontSize":"14px","color":"rgba(64, 158, 255, 1)"}'>年龄：</div>
 				<el-input v-model="registerForm.nianling"  placeholder="请输入年龄" />
 			</el-form-item>
-			<el-form-item :style='{"width":"80%","padding":"0","margin":"0 auto 20px","height":"auto"}' v-if="tableName=='yonghu'" prop="youxiang">
-				<div v-if="false" :style='{"width":"64px","lineHeight":"44px","fontSize":"14px","color":"rgba(64, 158, 255, 1)"}'>邮箱：</div>
-				<el-input v-model="registerForm.youxiang"  placeholder="请输入邮箱" />
-			</el-form-item>
 			<el-form-item :style='{"width":"80%","padding":"0","margin":"0 auto 20px","height":"auto"}' v-if="tableName=='yonghu'" prop="shouji">
 				<div v-if="false" :style='{"width":"64px","lineHeight":"44px","fontSize":"14px","color":"rgba(64, 158, 255, 1)"}'>手机：</div>
 				<el-input v-model="registerForm.shouji"  placeholder="请输入手机" />
@@ -240,7 +236,7 @@ export default {
 		.el-date-editor.el-input {
 			width: 100%;
 		}
-		
+
 		.rgs-form .el-input /deep/ .el-input__inner {
 						border: 1px solid #F9F9F9;
 						border-radius: 8px;
@@ -252,7 +248,7 @@ export default {
 						font-size: 14px;
 						height: 40px;
 					}
-		
+
 		.rgs-form .el-select /deep/ .el-input__inner {
 						border: 0;
 						border-radius: 8px;
@@ -264,7 +260,7 @@ export default {
 						font-size: 14px;
 						height: 40px;
 					}
-		
+
 		.rgs-form .el-date-editor /deep/ .el-input__inner {
 						border: 0;
 						border-radius: 8px;
@@ -276,7 +272,7 @@ export default {
 						font-size: 14px;
 						height: 40px;
 					}
-		
+
 		.rgs-form .el-date-editor /deep/ .el-input__inner {
 						border: 0;
 						border-radius: 8px;
@@ -288,7 +284,7 @@ export default {
 						font-size: 14px;
 						height: 40px;
 					}
-		
+
 		.rgs-form /deep/ .el-upload--picture-card {
 			background: transparent;
 			border: 0;
@@ -298,7 +294,7 @@ export default {
 			line-height: initial;
 			vertical-align: middle;
 		}
-		
+
 		.rgs-form /deep/ .upload .upload-img {
 		  		  border: 1px dashed #888;
 		  		  cursor: pointer;
@@ -310,7 +306,7 @@ export default {
 		  		  text-align: center;
 		  		  height: 80px;
 		  		}
-		
+
 		.rgs-form /deep/ .el-upload-list .el-upload-list__item {
 		  		  border: 1px dashed #888;
 		  		  cursor: pointer;
@@ -322,7 +318,7 @@ export default {
 		  		  text-align: center;
 		  		  height: 80px;
 		  		}
-		
+
 		.rgs-form /deep/ .el-upload .el-icon-plus {
 		  		  border: 1px dashed #888;
 		  		  cursor: pointer;
